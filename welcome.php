@@ -17,16 +17,15 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <link rel="stylesheet" href="style.css">
     
 
-    <title>Welcome - <?php $_SESSION['username']?></title>
+    <title>Welcome - <?php echo $_SESSION['username']?></title>
   </head>
   <body>
-  <?php require 'partial/nav.php' ?>
 
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-            <img src="user.jfif" alt="profile_picture">
-            <h3><?php echo $_SESSION['username']?></h3>
+            <img src="user1.jfif" alt="profile_picture">
+            <h2><?php echo $_SESSION['username']?></h2>
             <p>Programmer</p>
             </div>
             <ul>
@@ -35,6 +34,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                         <span class="item">Profile</span>
                     </a>
                 </li>
+                    
                 <li>
                     <a href="#">
                         
@@ -66,10 +66,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    
+                        <a href="/project/logout.php"><span class="item">Signout</span></a>
                         
-                        <span class="item">Signout</span>
-                    </a>
+                    
                 </li>
             
   </ul>
