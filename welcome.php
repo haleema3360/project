@@ -14,7 +14,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     
 
     <title>Welcome - <?php $_SESSION['username']?></title>
