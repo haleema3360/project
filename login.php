@@ -34,6 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    
   </head>
   <body>
   <?php require 'partial/nav.php' ?>
@@ -55,9 +56,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div> ';
     }
     ?>
+    
     <div class="container my-5">
         <form action="/project/login.php" method="post">
+      <div class="login-page">
       <div class="form">
+        <div class="login">
+          <div class="login-header">
+            <h3>Login</h3>
+            <p>Please enter your credentials to login.</p><br>
+          </div>
+        </div>
+  
       <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
             <label for="password">Password</label>
