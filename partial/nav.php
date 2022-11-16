@@ -39,8 +39,8 @@ if(!$loggedin){
 
   <ul class="dropdown-menu" style="">
     <li><a class="dropdown-item" href="/project/login.php">Admin</a></li>
-    <li><a class="dropdown-item" href=""/project/login.php"">Manager</a></li>
-    <li><a class="dropdown-item" href="/project/login.php">Worker</a></li>
+    <li><a class="dropdown-item" href="">Manager</a></li>
+    <li><a class="dropdown-item" href="">Worker</a></li>
   </ul>
   </div>
     <li class="nav-item">
