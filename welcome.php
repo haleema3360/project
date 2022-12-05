@@ -13,8 +13,57 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    
     <link rel="stylesheet" href="style.css">
+    <style>
+        .content {
+	border: 1px;
+	
+	margin-top: 80px;
+	margin-bottom: 60px;
+	margin-right: 0px;
+	margin-left: 250px;
+    word-wrap: break-word;
+}
+   
+
+ .content .box {
+	  padding: 5px;
+	  width: 85%;
+	  
+	  
+	  color:#fff;
+	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      display: block;
+       margin-left: auto;
+        margin-right: auto;">
+  }
+ .content .box.user-info {
+  font-family: Arial, Helvetica, sans-serif;
+  
+  width: 100%;
+}
+
+.content .box .user-info td, .user-info th {
+ 
+  padding: 15px;
+}
+
+
+
+.content .box.user-info th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+ 
+  color: white;
+}
+.content .box .heading{
+font-family: Arial, Helvetica, sans-serif;
+font-size: 30px;
+}
+    </style>
+
     
 
     <title>Welcome - <?php echo $_SESSION['username']?></title>
@@ -75,8 +124,60 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
   </ul>
   
        </div>
+</div>
+
         
-    </div>
+        <div class="content">
+        <div class="box">
+        <table class="user-info">
+            hello
+  <tr class="heading">
+ <td> name</td>
+  	</tr>
+  
+  <tr>
+    <td>User ID</td>
+    
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Username</td>
+    
+    <td>Sweden</td>
+  </tr>
+  <tr>
+    <td>Date of Birth</td>
+    
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>Gender</td>
+    
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>Designation</td>
+    
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Phone Number</td>
+    
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Address</td>
+    
+    <td>Canada</td>
+  </tr>
+  
+</table>
+        </div>
+        
+</div>
+</div>
+
+
   
 
     

@@ -1,11 +1,4 @@
-*{
-	list-style: none;
-	text-decoration: none;
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Open Sans', sans-serif;
-}
+
 h2{
     color: #8EC3B0;
 }
@@ -74,6 +67,30 @@ h2{
 .wrapper .sidebar ul li a.active:before{
 	display: block;
 }
+
+ .content {
+	border: 1px;
+	background-color: #FEFCF3 ;
+	margin-top: 80px;
+	margin-bottom: 60px;
+	margin-right: 20px;
+	margin-left: 250px;
+}
+   
+  
+ .content .details {
+	  padding: 5px;
+	  color: black;
+  }
+  .wrapper .content .box {
+	  padding: 1px;
+	  width: 50%;
+	  margin: 10px auto;
+	  
+	  color:#fff;
+	  box-shadow: 6px 12px #E8F3D6;
+  }
+
 
 
 
