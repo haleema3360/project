@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        header("location: welcome.php");
+        header("location: admin_profile.php");
 
     } 
     else{

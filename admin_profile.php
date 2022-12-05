@@ -13,10 +13,12 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
     <link rel="stylesheet" href="style.css">
-    <style>
-        .content {
+   <style>.content {
 	border: 1px;
 	
 	margin-top: 80px;
@@ -25,15 +27,26 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 	margin-left: 250px;
     word-wrap: break-word;
 }
+* {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
    
 
  .content .box {
 	  padding: 5px;
 	  width: 85%;
+	  
+	  
+
 	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
-        margin-right: auto;">
+        margin-right: auto;
   }
  .content .box.user-info {
   font-family: Arial, Helvetica, sans-serif;
@@ -53,17 +66,16 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
   padding-bottom: 12px;
   text-align: left;
  
-  color: white;
+
 }
 .content .box .heading{
 font-family: Arial, Helvetica, sans-serif;
 font-size: 30px;
-}
-    </style>
+}</style>
 
-    
+// <?php echo $_SESSION['username']?> 
 
-    <title>Welcome - <?php echo $_SESSION['username']?></title>
+    <title>Profile</title>
   </head>
   <body>
 
@@ -72,41 +84,41 @@ font-size: 30px;
             <div class="profile">
             <img src="user1.jfif" alt="profile_picture">
             <h2><?php echo $_SESSION['username']?></h2>
-            <p>Programmer</p>
+            <p>Admin</p>
             </div>
             <ul>
                 <li>
-                    <a href="#" class="active">
+                    <a href="admin_profile.php" class="active">
                         <span class="item">Profile</span>
                     </a>
                 </li>
                     
                 <li>
-                    <a href="#">
+                    <a href="admin_products.php">
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="admin_porders.php">
                         
                         <span class="item">Product Orders</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="admin_rawmaterials.php">
                         
                         <span class="item">Raw Material</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#">
                         
                         <span class="item">Raw Material Orders</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
-                    <a href="#">
+                    <a href="admin_warehouse.php">
                         
                         <span class="item">Warehouse</span>
                     </a>
@@ -124,48 +136,48 @@ font-size: 30px;
 </div>
 
         
-        <div class="content">
-        <div class="box">
-        <table class="user-info">
-          
+<div class="content">
+<div class="box">
+<table class="user-info">
+        
   <tr class="heading">
- <td> name</td>
+ <td> <h1><u>Name</u></h1></td>
   	</tr>
   
   <tr>
     <td>User ID</td>
     
-    <td>Germany</td>
+    <td>01</td>
   </tr>
   <tr>
     <td>Username</td>
     
-    <td>Sweden</td>
+    <td><?php echo $_SESSION['username']?></td>
   </tr>
   <tr>
     <td>Date of Birth</td>
     
-    <td>Mexico</td>
+    <td>23/10/1999</td>
   </tr>
   <tr>
     <td>Gender</td>
     
-    <td>Austria</td>
+    <td>F</td>
   </tr>
   <tr>
     <td>Designation</td>
     
-    <td>UK</td>
+    <td>Admin</td>
   </tr>
   <tr>
     <td>Phone Number</td>
     
-    <td>Germany</td>
+    <td>987654656</td>
   </tr>
   <tr>
     <td>Address</td>
     
-    <td>Canada</td>
+    <td>Bangalore</td>
   </tr>
   
 </table>
@@ -179,8 +191,5 @@ font-size: 30px;
 
     
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>
