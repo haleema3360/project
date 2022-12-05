@@ -30,9 +30,6 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
  .content .box {
 	  padding: 5px;
 	  width: 85%;
-	  
-	  
-	  color:#fff;
 	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
@@ -130,7 +127,7 @@ font-size: 30px;
         <div class="content">
         <div class="box">
         <table class="user-info">
-            hello
+          
   <tr class="heading">
  <td> name</td>
   	</tr>
