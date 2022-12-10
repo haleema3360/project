@@ -22,18 +22,13 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
    <style>.content {
 	border: 1px;
 	
-	margin-top: 40px;
+	margin-top: 30px;
 	margin-bottom: 60px;
 	margin-right: 0px;
-	margin-left: 250px;
+	margin-left: 240px;
     word-wrap: break-word;
     background-color:white;
 }
-.but {
-color: white;
-}
-
-
 * {
     list-style: none;
     text-decoration: none;
@@ -42,7 +37,6 @@ color: white;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-   
 
  .content .box {
 	  padding: 5px;
@@ -90,14 +84,50 @@ font-size: 30px;
   border: 1px solid #ddd;
   padding: 8px;
 }
+input[type=text], select {
+  width: 95%;
+  padding: 5px 10px;
+  margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 0px;
+	margin-left: 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #0D4C92;
+  color: white;
+  padding: 14px 20px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #0D4C92;
+}
+.heading{
+  margin-left: 90px;
+  color: black;
+  margin-bottom: 20px;
+
+
+}
 
 
 
-.products tr:hover {background-color: #ddd;}
+
+
+.products tr:hover {background-color: #0D4C92;}
 
 .products th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 10px;
+  padding-bottom: 5px;
   text-align: left;
   background-color: #0D4C92;
   color: white;
@@ -105,16 +135,12 @@ font-size: 30px;
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #0D4C92;
-    margin-left: 530px;
-    margin-bottom: 7px;
-    
 }
-
 </style>
 
     
 
-    <title>Raw Materials</title>
+    <title>Products</title>
   </head>
   <body>
 
@@ -133,7 +159,7 @@ font-size: 30px;
                 </li>
                     
                 <li>
-                    <a href="admin_products.php" >
+                    <a href="admin_products.php" class="active">
                         
                         <span class="item">Products</span>
                     </a>
@@ -145,12 +171,12 @@ font-size: 30px;
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="active">
+                    <a href="admin_rawmaterials.php">
                         
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
-                <!-- <li>
+                 <!-- <li>
                     <a href="#">
                         
                         <span class="item">Raw Material Orders</span>
@@ -175,101 +201,46 @@ font-size: 30px;
 </div>
 
         
-<div class="content">
+<div class="content"> 
+<h2 class="heading"> Add Product</h2>
 <div class="box">
-<table class="user-info">
-        
-  <tr class="heading">
- <td> <h3><u>Raw Materials</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="add_rawmaterials.php">Add Raw Material</a></button></td>
-  	</tr>
-  
-      <table class="products">
-  <tr>
-    <th>Product ID</th>
-    <th>Product Name</th>
-    <th>Quantity</th>
-    <th>Unit</th>
-    <th>Warehouse</th>
-    <th>Edit</th>
-  </tr>
-  <tr>
-    <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>Name</td>
-    <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>Name</td>
-    <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>Name</td>
-    <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>Name</td>
-    <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>Name</td>
-    <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>Name</td>
-    <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>Name</td>
-    <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>Name</td>
-    <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
+<div>
+  <form action="/project/admin_products.php" method="post">
+    <label for="fname">Product ID</label>
+    <input type="text"  name="product_id" placeholder="Product ID">
+    <br>
 
-</table>
+    <label for="lname">Product Name</label>
+    <input type="text"  name="product_name" placeholder="Product name">
+    <br>
 
-
+    <label for="country">Quantity</label>
+    <input type="text"  name="quantity" placeholder="Quantity">
+    <br>
+    <label for="lname">Unit</label>
+    <br>
+    <input type="text"  name="unit" placeholder="Unit">
+    <br>
+    <div class="dropdown">
+      
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Status
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button class="dropdown-item" type="button">Procurement</button>
+    <button class="dropdown-item" type="button">Manufacturing</button>
+    <button class="dropdown-item" type="button">Warehousing </button>
+    <button class="dropdown-item" type="button">Order Fulfillment </button>
+    <button class="dropdown-item" type="button">Transportation </button>
+  </div>
 </div>
-        
-</div>
-</div>
-
-
-  
-
     
+  
+    <input type="submit" value="Submit">
+  </form>
+</div>
 
+</div>
+</div>
 </body>
 </html>

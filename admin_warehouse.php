@@ -22,12 +22,14 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
    <style>.content {
 	border: 1px;
 	
-	margin-top: 80px;
+	margin-top: 40px;
 	margin-bottom: 60px;
 	margin-right: 0px;
 	margin-left: 250px;
     word-wrap: break-word;
+    background-color:white;
 }
+
 * {
     list-style: none;
     text-decoration: none;
@@ -99,6 +101,12 @@ font-size: 30px;
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #0D4C92;
+    margin-left: 580px;
+    margin-bottom: 7px;
+    
+}
+.but {
+color: white;
 }
 </style>
 
@@ -137,7 +145,7 @@ font-size: 30px;
                 <li>
                     <a href="admin_rawmaterials.php">
                         
-                        <span class="item">Raw Material</span>
+                        <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
                 <!-- <li>
@@ -171,7 +179,7 @@ font-size: 30px;
         
   <tr class="heading">
  <td> <h3><u>Warehouse</u></h3></td>
- <td><button type="button" class="btn btn-primary" href="#">Add Warehouse</button></td>
+ <td><button type="button" class="btn btn-primary"> <a class="but"href="add_warehouse.php">Add Warehouse </a></button></td>
   	</tr>
   
       <table class="products">

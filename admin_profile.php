@@ -18,14 +18,20 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
    <style>.content {
 	border: 1px;
 	
-	margin-top: 80px;
-	margin-bottom: 60px;
+	margin-top: 10px;
+	margin-bottom: 50px;
 	margin-right: 0px;
 	margin-left: 250px;
     word-wrap: break-word;
+    background-color:white;
 }
 * {
     list-style: none;
@@ -35,7 +41,6 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-   
 
  .content .box {
 	  padding: 5px;
@@ -62,7 +67,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 
 
 .content .box.user-info th {
-  padding-top: 12px;
+  padding-top: 8px;
   padding-bottom: 12px;
   text-align: left;
  
@@ -71,7 +76,47 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 .content .box .heading{
 font-family: Arial, Helvetica, sans-serif;
 font-size: 30px;
-}</style>
+}
+
+.products {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.products td, .products th {
+  border: 1px solid #ddd;
+  padding: 3px;
+}
+.but {
+color: white;
+}
+
+
+
+
+.products tr:hover {background-color: #ddd;}
+
+.products th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0D4C92;
+  color: white;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #0D4C92;
+    margin-left: 900px;
+    margin-bottom: 30px;
+    
+	
+}
+.btn-link{
+  margin-left: 750px;
+}
+
+</style>
 
 // <?php echo $_SESSION['username']?> 
 
@@ -108,7 +153,7 @@ font-size: 30px;
                 <li>
                     <a href="admin_rawmaterials.php">
                         
-                        <span class="item">Raw Material</span>
+                        <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
                 <!-- <li>
@@ -137,11 +182,19 @@ font-size: 30px;
 
         
 <div class="content">
+<button type="button" class="btn btn-primary" > <a class="but" href="add_user.php">Add New User</a></button>
+
 <div class="box">
 <table class="user-info">
+
+ 
+ 
+
+
         
   <tr class="heading">
- <td> <h1><u>Name</u></h1></td>
+ <td> <h3><u>Name</u></h3></td>
+ <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   	</tr>
   
   <tr>
