@@ -11,6 +11,7 @@ h2{
 }
 .item{
 	padding: 3px;
+	text-align: center;
   }
 .wrapper .sidebar{
 	background:#393E46;

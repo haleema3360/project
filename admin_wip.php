@@ -29,7 +29,14 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     word-wrap: break-word;
     background-color:white;
 }
-   
+* {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
 
  .content .box {
 	  padding: 5px;
@@ -77,14 +84,6 @@ font-size: 30px;
   border: 1px solid #ddd;
   padding: 8px;
 }
-* {
-    list-style: none;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
-}
 
 
 
@@ -99,10 +98,11 @@ font-size: 30px;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #0D4C92;
-    margin-left: 470px;
-    margin-bottom: 7px;
     
+  background-color: #0D4C92;
+  margin-left: 580px;
+    margin-bottom: 7px;
+  
 }
 .but {
 color: white;
@@ -112,14 +112,14 @@ color: white;
 
     
 
-    <title>Product Orders</title>
+    <title>Products</title>
   </head>
   <body>
 
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-            
+           
             <h2><?php echo $_SESSION['username']?></h2>
             <p>Admin</p>
             </div>
@@ -137,19 +137,19 @@ color: white;
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php" class="active">
+                    <a href="admin_porders.php">
                         
                         <span class="item">Product Orders</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_rawmaterials.php" >
+                    <a href="admin_rawmaterials.php">
                         
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_wip.php">
+                    <a href="admin_wip.php" class="active">
                         
                         <span class="item">WIP Inventory</span>
                     </a>
@@ -190,33 +190,28 @@ color: white;
 <table class="user-info">
         
   <tr class="heading">
- <td> <h3><u>Products Orders</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="product_order.php">Order New Product</a></button></td>
+ <td> <h3><u>WIP Inventory</u></h3></td>
+ <td><button type="button" class="btn btn-primary"> <a class="but" href="add_product.php"> Add Item</a></button> </td>
   	</tr>
   
       <table class="products">
   <tr>
-    <th>Product ID</th>
-    <th>Product Name</th>
-    <th>Quantity</th>
-    <th>Unit</th>
-    <th>Status</th>
-    <th>Edit</th>
+    <th>Batch ID</th>
+    <th>Component</th>
+    <th>Workstation From</th>
+    <th>Time (Deposited)</th>
+    <th>Person</th>
+    <th>Workstation To</th>
+    <th>Time (Picked up)</th>
+    <th>Person</th>
   </tr>
   <tr>
     <td>1001</td>
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>
-  </td>
-  <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
+    <td></td>
+    <td></td>
     <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
@@ -226,13 +221,7 @@ color: white;
     <td>10</td>
     <td>Kg</td>
     <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
+    <td></td>
     <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
@@ -242,13 +231,7 @@ color: white;
     <td>10</td>
     <td>Kg</td>
     <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
+    <td></td>
     <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
@@ -258,6 +241,8 @@ color: white;
     <td>10</td>
     <td>Kg</td>
     <td></td>
+    <td></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -266,9 +251,41 @@ color: white;
     <td>10</td>
     <td>Kg</td>
     <td></td>
+    <td></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
- 
+  <tr>
+  <td>1001</td>
+    <td>abc</td>
+    <td>10</td>
+    <td>Kg</td>
+    <td></td>
+    <td></td>
+    <td></td>
+<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+  </tr>
+  <tr>
+  <td>1001</td>
+    <td>abc</td>
+    <td>10</td>
+    <td>Kg</td>
+    <td></td>
+    <td></td>
+    <td></td>
+<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+  </tr>
+  <tr>
+  <td>1001</td>
+    <td>abc</td>
+    <td>10</td>
+    <td>Kg</td>
+    <td></td>
+    <td></td>
+    <td></td>
+<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+  </tr>
+  
   
 </table>
 
@@ -283,5 +300,5 @@ color: white;
 
     
 
-</body>
+  </body>
 </html>

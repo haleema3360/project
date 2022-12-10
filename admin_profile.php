@@ -26,7 +26,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
    <style>.content {
 	border: 1px;
 	
-	margin-top: 10px;
+	margin-top: 40px;
 	margin-bottom: 50px;
 	margin-right: 0px;
 	margin-left: 250px;
@@ -45,6 +45,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
  .content .box {
 	  padding: 5px;
 	  width: 85%;
+  
 	  
 	  
 
@@ -52,6 +53,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
       display: block;
        margin-left: auto;
         margin-right: auto;
+  }
+  h2{
+    margin-left:100px;
   }
  .content .box.user-info {
   font-family: Arial, Helvetica, sans-serif;
@@ -127,7 +131,7 @@ color: white;
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-            <img src="user1.jfif" alt="profile_picture">
+    
             <h2><?php echo $_SESSION['username']?></h2>
             <p>Admin</p>
             </div>
@@ -156,16 +160,29 @@ color: white;
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="#">
-                        
-                        <span class="item">Raw Material Orders</span>
-                    </a>
-                </li> -->
+                
                 <li>
-                    <a href="admin_warehouse.php">
+                    <a href="admin_wip.php">
                         
-                        <span class="item">Warehouse</span>
+                        <span class="item">WIP Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_finishedg.php">
+                        
+                        <span class="item">Finished Goods Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_mro.php">
+                        
+                        <span class="item">MRO Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_empmanage.php">
+                        
+                        <span class="item">Employee Management</span>
                     </a>
                 </li>
                 <li>
@@ -182,9 +199,10 @@ color: white;
 
         
 <div class="content">
-<button type="button" class="btn btn-primary" > <a class="but" href="add_user.php">Add New User</a></button>
+<h2><u>Profile</u></h2>
 
 <div class="box">
+
 <table class="user-info">
 
  

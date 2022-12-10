@@ -148,7 +148,7 @@ input[type=submit]:hover {
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-            <img src="user1.jfif" alt="profile_picture">
+            
             <h2><?php echo $_SESSION['username']?></h2>
             <p>Admin</p>
             </div>
@@ -177,16 +177,28 @@ input[type=submit]:hover {
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
-                 <!-- <li>
-                    <a href="#">
-                        
-                        <span class="item">Raw Material Orders</span>
-                    </a>
-                </li> -->
                 <li>
-                    <a href="admin_warehouse.php" class="active">
+                    <a href="admin_wip.php">
                         
-                        <span class="item">Warehouse</span>
+                        <span class="item">WIP Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_finishedg.php">
+                        
+                        <span class="item">Finished Goods Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_mro.php">
+                        
+                        <span class="item">MRO Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_empmanage.php">
+                        
+                        <span class="item">Employee Management</span>
                     </a>
                 </li>
                 <li>

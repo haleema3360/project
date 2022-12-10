@@ -119,7 +119,7 @@ color: white;
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-            <img src="user1.jfif" alt="profile_picture">
+           
             <h2><?php echo $_SESSION['username']?></h2>
             <p>Admin</p>
             </div>
@@ -148,16 +148,28 @@ color: white;
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
-                 <!-- <li>
-                    <a href="#">
-                        
-                        <span class="item">Raw Material Orders</span>
-                    </a>
-                </li> -->
                 <li>
-                    <a href="admin_warehouse.php">
+                    <a href="admin_wip.php">
                         
-                        <span class="item">Warehouse</span>
+                        <span class="item">WIP Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_finishedg.php">
+                        
+                        <span class="item">Finished Goods Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_mro.php">
+                        
+                        <span class="item">MRO Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_empmanage.php">
+                        
+                        <span class="item">Employee Management</span>
                     </a>
                 </li>
                 <li>
@@ -196,18 +208,7 @@ color: white;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
-</div></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -215,18 +216,7 @@ color: white;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
-</div></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -234,18 +224,7 @@ color: white;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
-</div></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -253,18 +232,7 @@ color: white;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
-</div></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -272,18 +240,7 @@ color: white;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
-</div></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -291,18 +248,7 @@ color: white;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
-</div></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -310,18 +256,7 @@ color: white;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
-</div></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -329,18 +264,7 @@ color: white;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td><div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
-</div></td>
+    <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   

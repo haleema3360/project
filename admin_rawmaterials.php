@@ -121,7 +121,7 @@ font-size: 30px;
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-            <img src="user1.jfif" alt="profile_picture">
+            
             <h2><?php echo $_SESSION['username']?></h2>
             <p>Admin</p>
             </div>
@@ -150,16 +150,28 @@ font-size: 30px;
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="#">
-                        
-                        <span class="item">Raw Material Orders</span>
-                    </a>
-                </li> -->
                 <li>
-                    <a href="admin_warehouse.php">
+                    <a href="admin_wip.php">
                         
-                        <span class="item">Warehouse</span>
+                        <span class="item">WIP Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_finishedg.php">
+                        
+                        <span class="item">Finished Goods Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_mro.php">
+                        
+                        <span class="item">MRO Inventory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin_empmanage.php">
+                        
+                        <span class="item">Employee Management</span>
                     </a>
                 </li>
                 <li>
@@ -186,11 +198,12 @@ font-size: 30px;
   
       <table class="products">
   <tr>
-    <th>Product ID</th>
-    <th>Product Name</th>
+    <th>SKU ID</th>
+    <th>Material</th>
+    <th>Type</th>
     <th>Quantity</th>
-    <th>Unit</th>
-    <th>Warehouse</th>
+    <th>Units</th>
+    <th>Recieved Date</th>
     <th>Edit</th>
   </tr>
   <tr>
@@ -198,7 +211,9 @@ font-size: 30px;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>Name</td>
+    <td></td>
+    <td></td>
+
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -206,7 +221,8 @@ font-size: 30px;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>Name</td>
+    <td></td>
+    <td></td>
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -214,7 +230,8 @@ font-size: 30px;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>Name</td>
+    <td></td>
+    <td></td>
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -222,7 +239,8 @@ font-size: 30px;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>Name</td>
+    <td></td>
+    <td></td>
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -230,7 +248,8 @@ font-size: 30px;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>Name</td>
+    <td></td>
+    <td></td>
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -238,7 +257,8 @@ font-size: 30px;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>Name</td>
+    <td></td>
+    <td></td>
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -246,7 +266,8 @@ font-size: 30px;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>Name</td>
+    <td></td>
+    <td></td>
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
   <tr>
@@ -254,7 +275,8 @@ font-size: 30px;
     <td>abc</td>
     <td>10</td>
     <td>Kg</td>
-    <td>Name</td>
+    <td></td>
+    <td></td>
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
 
