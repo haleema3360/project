@@ -6,6 +6,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     exit;
 }
 ?>
+<?php
+include 'partial/dbconnect.php';
+?>
 
 
 <!doctype html>
@@ -194,7 +197,8 @@ color: white;
  <td><button type="button" class="btn btn-primary"> <a class="but" href="add_product.php"> Add Product</a></button> </td>
   	</tr>
   
-      <table class="products">
+  <table class="products">
+  <thead>
   <tr>
     <th>Product ID</th>
     <th>Product Name</th>
@@ -203,70 +207,105 @@ color: white;
     <th>Product Status</th>
     <th>Edit</th>
   </tr>
-  <tr>
-    <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
+  </thead>
+  <tbody>
+  <?php
+  $sql = "SELECT * FROM `products`";
+  $result = mysqli_query($conn, $sql);
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       $product_id=$row['product_id'];
+        $product_name=$row['product_name'];
+        $quantity=$row['quantity'];
+          $unit=$row['unit']; 
+          $status=$row['status'];
+          echo '<tr>
+              <td>'.$row["product_id"].'</td>
+              <td>'.$row["product_name"].'</td>
+              <td>'.$row["quantity"].'</td>
+               <td>'.$row["unit"].'</td>
+               <td>'.$row["status"].'</td>
+              
+         
+             </tr>';
+  }
+}
+?>
+<td>
+  <button><a href="">Edit</a></button>
+  <button><a href="">Delete</a></button>
+</td>
+</tbody>
+
+        
+  
+    
+
+  
+<!-- <tr>
+//     <td>1001</td>
+//     <td>abc</td>
+//     <td>10</td>
+//     <td>Kg</td>
+//     <td></td>
+// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+//   </tr>
+//   <tr>
+//   <td>1001</td>
+//     <td>abc</td>
+//     <td>10</td>
+//     <td>Kg</td>
+//     <td></td>
+// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+//   </tr>
+//   <tr>
+//   <td>1001</td>
+//     <td>abc</td>
+//     <td>10</td>
+//     <td>Kg</td>
+//     <td></td>
+// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+//   </tr>
+//   <tr>
+//   <td>1001</td>
+//     <td>abc</td>
+//     <td>10</td>
+//     <td>Kg</td>
+//     <td></td>
+// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+//   </tr>
+//   <tr>
+//   <td>1001</td>
+//     <td>abc</td>
+//     <td>10</td>
+//     <td>Kg</td>
+//     <td></td>
+// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+//   </tr>
+//   <tr>
+//   <td>1001</td>
+//     <td>abc</td>
+//     <td>10</td>
+//     <td>Kg</td>
+//     <td></td>
+// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+//   </tr>
+//   <tr>
+//   <td>1001</td>
+//     <td>abc</td>
+//     <td>10</td>
+//     <td>Kg</td>
+//     <td></td>
+// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+//   </tr>
+//   <tr>
+//   <td>1001</td>
+//     <td>abc</td>
+//     <td>10</td>
+//     <td>Kg</td>
+//     <td></td>
+// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
+//   </tr> -->
   
   
 </table>

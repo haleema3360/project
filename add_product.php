@@ -1,11 +1,35 @@
-<?php
+<!-- <?php
 session_start();
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     header("location: login.php");
     exit;
 }
+?> -->
+ <?php
+include 'partial/dbconnect.php';
+if(isset($_POST['submit'])){
+  $product_id= $_POST['product_id'];
+        $product_name=$_POST['product_name'];
+        $quantity=$_POST['quantity'];
+          $unit=$_POST['unit'];
+          $status=$_POST['status'];
+          
+
+          $sql = "INSERT INTO `products` (`product_id`, `product_name`, `quantity`, `unit`, `status`) 
+          VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
+          $result = mysqli_query($conn, $sql);
+          if($result){
+            echo"Data inserted successfully";
+            header('location:admin_products.php');
+            
+          }
+          else{
+            die(mysqli_error($conn));
+          }
+}
 ?>
+
 
 
 <!doctype html>
@@ -212,30 +236,36 @@ input[type=submit]:hover {
        </div>
 </div>
 
+
         
 <div class="content"> 
 <h2 class="heading"> Add Product</h2>
 <div class="box">
 <div>
   <form action="/project/admin_products.php" method="post">
-    <label for="fname">Product ID</label>
+    <label>Product ID</label>
     <input type="text"  name="product_id" placeholder="Product ID">
     <br>
 
-    <label for="lname">Product Name</label>
+    <label>Product Name</label>
     <input type="text"  name="product_name" placeholder="Product name">
     <br>
 
-    <label for="country">Quantity</label>
+    <label>Quantity</label>
     <input type="text"  name="quantity" placeholder="Quantity">
     <br>
-    <label for="lname">Unit</label>
+    <label>Unit</label>
     <br>
     <input type="text"  name="unit" placeholder="Unit">
     <br>
-    <div class="dropdown">
+    <label>Status</label>
+    <br>
+    <input type="text"  name="status" placeholder="Status">
+    
+    </div>
+    <!-- <div class="dropdown"> -->
       
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <!-- <button class="btn btn-secondary dropdown-toggle" type="button" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Status
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -245,10 +275,10 @@ input[type=submit]:hover {
     <button class="dropdown-item" type="button">Order Fulfillment </button>
     <button class="dropdown-item" type="button">Transportation </button>
   </div>
-</div>
+ -->
     
   
-    <input type="submit" value="Submit">
+    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
   </form>
 </div>
 
