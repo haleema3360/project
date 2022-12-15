@@ -7,6 +7,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 }
 ?>
 
+<?php
+include 'partial/dbconnect.php';
+?>
+
 
 <!doctype html>
 <html lang="en">
@@ -196,7 +200,8 @@ font-size: 30px;
  <td><button type="button" class="btn btn-primary"> <a class="but" href="add_rawmaterials.php">Add Raw Material</a></button></td>
   	</tr>
   
-      <table class="products">
+  <table class="products">
+    <thead>
   <tr>
     <th>SKU ID</th>
     <th>Material</th>
@@ -206,7 +211,39 @@ font-size: 30px;
     <th>Recieved Date</th>
     <th>Edit</th>
   </tr>
-  <tr>
+</thead>
+<tbody>
+<?php
+  $sql = "SELECT * FROM `raw_materials`";
+  $result = mysqli_query($conn, $sql);
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       $sku_id=$row['sku_id'];
+        $material=$row['material'];
+        $type=$row['type'];
+          $quantity=$row['quantity']; 
+          $units=$row['units'];
+          $recieved_date=$row['recieved_date'];
+          echo '<tr>
+              <td>'.$row["sku_id"].'</td>
+              <td>'.$row["material"].'</td>
+              <td>'.$row["type"].'</td>
+               <td>'.$row["quantity"].'</td>
+               <td>'.$row["units"].'</td>
+               <td>'.$row["recieved_date"].'</td>
+               <td>
+               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+</td>
+              
+         
+             </tr>';
+  }
+}
+?>
+
+</tbody>
+  <!-- <tr>
     <td>1001</td>
     <td>abc</td>
     <td>10</td>
@@ -278,7 +315,7 @@ font-size: 30px;
     <td></td>
     <td></td>
     <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
+  </tr>-->
 
 </table>
 

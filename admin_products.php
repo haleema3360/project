@@ -205,7 +205,7 @@ color: white;
     <th>Quantity</th>
     <th>Unit</th>
     <th>Product Status</th>
-    <th>Edit</th>
+    <th>Action</th>
   </tr>
   </thead>
   <tbody>
@@ -225,16 +225,17 @@ color: white;
               <td>'.$row["quantity"].'</td>
                <td>'.$row["unit"].'</td>
                <td>'.$row["status"].'</td>
+               <td>
+               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+</td>
               
          
              </tr>';
   }
 }
 ?>
-<td>
-  <button><a href="">Edit</a></button>
-  <button><a href="">Delete</a></button>
-</td>
+
 </tbody>
 
         

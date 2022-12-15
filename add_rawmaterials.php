@@ -1,9 +1,27 @@
 <?php
-session_start();
+include 'partial/dbconnect.php';
+if(isset($_POST['submit'])){
+        $sku_id= $_POST["sku_id"];
+        $material=$_POST["material"];
+        $type=$_POST["type"];
+        $quantity=$_POST["quantity"];
+        $units=$_POST["units"];
+        $recieved_date=$_POST["recieved_date"];
+          
 
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-    header("location: login.php");
-    exit;
+          $sql = "INSERT INTO raw_materials (sku_id, material, type, quantity, units, recieved_date)
+           VALUES ('$sku_id', '$material', '$type', '$quantity', '$units', '$recieved_date')";
+          $result = mysqli_query($conn, $sql);
+          if($result){
+            echo"Data insrted";
+           header("location: admin_rawmaterials.php");
+            exit;
+            
+          }
+          else{
+          die(mysqli_error($conn));
+            
+           }
 }
 ?>
 
@@ -149,7 +167,7 @@ input[type=submit]:hover {
         <div class="sidebar">
             <div class="profile">
             
-            <h2><?php echo $_SESSION['username']?></h2>
+            <h2></h2>
             <p>Admin</p>
             </div>
             <ul>
@@ -219,26 +237,27 @@ input[type=submit]:hover {
 <div class="box">
  
 <div>
-  <form action="/project/admin_rawmaterials.php" method="post">
-    <label for="fname">Product ID</label>
-    <input type="text"  name="product_id" placeholder="Product ID">
+  <form action="/project/add_rawmaterials.php" method="post">
+    <label>Product ID</label>
+    <input type="text"  name="sku_id" placeholder="SKU ID">
 
-    <label for="lname">Product Name</label>
-    <input type="text"  name="product_name" placeholder="Product name">
+    <label>Material</label>
+    <input type="text"  name="material" placeholder="Material">
 
-    <label for="country">Quantity</label>
+    <label>Type</label>
+    <input type="text"  name="type" placeholder="Type">
+
+    <label>Quantity</label>
     <input type="text"  name="quantity" placeholder="Quantity">
-    <br>
-    <label for="lname">Unit</label>
-    <br>
-    <input type="text"  name="unit" placeholder="Unit">
-    <label for="lname">Warehouse</label>
-    <input type="text"  name="warehouse" placeholder="Warehouse">
 
-    
-    
+    <br>
+    <label>Units</label>
+    <input type="text"  name="units" placeholder="Units">
+    <label>Recieved Date</label>
+    <input type="text"  name="recieved_date" placeholder="yyyy-mm-dd">
+    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+
   
-    <input type="submit" value="Submit">
   </form>
 </div>
 

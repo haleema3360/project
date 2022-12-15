@@ -6,6 +6,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     exit;
 }
 ?>
+<?php
+include 'partial/dbconnect.php';
+?>
+
 
 
 <!doctype html>
@@ -25,7 +29,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 	margin-top: 40px;
 	margin-bottom: 60px;
 	margin-right: 0px;
-	margin-left: 250px;
+	margin-left: 180px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -82,7 +86,7 @@ font-size: 30px;
 
 .products td, .products th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 6px;
 }
 
 
@@ -100,7 +104,7 @@ font-size: 30px;
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     
   background-color: #0D4C92;
-  margin-left: 580px;
+  margin-left: 650px;
     margin-bottom: 7px;
   
 }
@@ -112,7 +116,7 @@ color: white;
 
     
 
-    <title>Products</title>
+    <title>admin-WIP</title>
   </head>
   <body>
 
@@ -191,10 +195,11 @@ color: white;
         
   <tr class="heading">
  <td> <h3><u>WIP Inventory</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="add_product.php"> Add Item</a></button> </td>
+ <td><button type="button" class="btn btn-primary"> <a class="but" href="add_wip.php"> Add Item</a></button> </td>
   	</tr>
   
       <table class="products">
+        <thead>
   <tr>
     <th>Batch ID</th>
     <th>Component</th>
@@ -204,8 +209,45 @@ color: white;
     <th>Workstation To</th>
     <th>Time (Picked up)</th>
     <th>Person</th>
+    <th>Action</th>
   </tr>
-  <tr>
+  </thead>
+  <tbody>
+
+  <?php
+  $sql = "SELECT * FROM `wip`";
+  $result = mysqli_query($conn, $sql);
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       $batch_id=$row['batch_id'];
+       $component=$row['component'];
+       $workstation_from=$row['workstation_from'];
+       $time_deposited=$row['time_deposited']; 
+       $sender=$row['sender'];
+       $workstation_to=$row['workstation_to'];
+       $time_picked=$row['time_picked'];
+       $reciever=$row['reciever'];
+          echo '<tr>
+              <td>'.$row["batch_id"].'</td>
+              <td>'.$row["component"].'</td>
+              <td>'.$row["workstation_from"].'</td>
+               <td>'.$row["time_deposited"].'</td>
+               <td>'.$row["sender"].'</td>
+               <td>'.$row["workstation_to"].'</td>
+               <td>'.$row["time_picked"].'</td>
+               <td>'.$row["reciever"].'</td>
+               <td>
+               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+</td>
+              
+         
+             </tr>';
+  }
+}
+?>
+</tbody>
+  <!-- <tr>
     <td>1001</td>
     <td>abc</td>
     <td>10</td>
@@ -285,7 +327,7 @@ color: white;
     <td></td>
 <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   </tr>
-  
+   --> 
   
 </table>
 

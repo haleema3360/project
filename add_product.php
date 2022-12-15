@@ -1,37 +1,32 @@
-<!-- <?php
-session_start();
-
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-    header("location: login.php");
-    exit;
-}
-?> -->
- <?php
+<?php
 include 'partial/dbconnect.php';
 if(isset($_POST['submit'])){
-  $product_id= $_POST['product_id'];
-        $product_name=$_POST['product_name'];
-        $quantity=$_POST['quantity'];
-          $unit=$_POST['unit'];
-          $status=$_POST['status'];
+        $product_id= $_POST["product_id"];
+        $product_name=$_POST["product_name"];
+        $quantity=$_POST["quantity"];
+        $unit=$_POST["unit"];
+        $status=$_POST["status"];
           
 
-          $sql = "INSERT INTO `products` (`product_id`, `product_name`, `quantity`, `unit`, `status`) 
+          $sql = "INSERT INTO products (product_id, product_name, quantity, unit, status) 
           VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
           $result = mysqli_query($conn, $sql);
           if($result){
-            echo"Data inserted successfully";
-            header('location:admin_products.php');
+            // header("location: admin_products.php");
+            // 
+            echo"Data insrted";
+            
+            
+            header("location: admin_products.php");
+            exit;
             
           }
           else{
-            die(mysqli_error($conn));
-          }
+          die(mysqli_error($conn));
+            
+           }
 }
 ?>
-
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -168,11 +163,11 @@ input[type=submit]:hover {
   </head>
   <body>
 
-  <div class="wrapper">
+  <!-- <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
             
-            <h2><?php echo $_SESSION['username']?></h2>
+            <h2></h2>
             <p>Admin</p>
             </div>
             <ul>
@@ -234,7 +229,7 @@ input[type=submit]:hover {
   </ul>
   
        </div>
-</div>
+</div>  -->
 
 
         
@@ -242,7 +237,7 @@ input[type=submit]:hover {
 <h2 class="heading"> Add Product</h2>
 <div class="box">
 <div>
-  <form action="/project/admin_products.php" method="post">
+  <form action="/project/add_product.php" method="post">
     <label>Product ID</label>
     <input type="text"  name="product_id" placeholder="Product ID">
     <br>
@@ -261,8 +256,9 @@ input[type=submit]:hover {
     <label>Status</label>
     <br>
     <input type="text"  name="status" placeholder="Status">
+    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     
-    </div>
+    
     <!-- <div class="dropdown"> -->
       
   <!-- <button class="btn btn-secondary dropdown-toggle" type="button" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -278,8 +274,9 @@ input[type=submit]:hover {
  -->
     
   
-    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    
   </form>
+  </div>
 </div>
 
 </div>

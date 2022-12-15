@@ -1,9 +1,29 @@
 <?php
-session_start();
+include 'partial/dbconnect.php';
+if(isset($_POST['submit'])){
+        $batch_id= $_POST["batch_id"];
+        $component=$_POST["component"];
+        $workstation_from=$_POST["workstation_from"];
+        $time_deposited=$_POST["time_deposited"];
+        $sender=$_POST["sender"];
+        $workstation_to=$_POST["workstation_to"];
+        $time_picked=$_POST["time_picked"];
+        $reciever=$_POST["reciever"];
+          
 
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-    header("location: login.php");
-    exit;
+          $sql = "INSERT INTO wip(batch_id, component, workstation_from, time_deposited, sender, workstation_to, time_picked, reciever)
+           VALUES ('$batch_id', '$component', '$workstation_from', ' $time_deposited', '$sender', '$workstation_to', '$time_picked', '$reciever')";
+          $result = mysqli_query($conn, $sql);
+          if($result){
+            echo"Data insrted";
+           header("location: admin_wip.php");
+            exit;
+            
+          }
+          else{
+          die(mysqli_error($conn));
+            
+           }
 }
 ?>
 
@@ -141,7 +161,7 @@ input[type=submit]:hover {
 
     
 
-    <title>Products</title>
+    <title>Add Item</title>
   </head>
   <body>
 
@@ -149,7 +169,7 @@ input[type=submit]:hover {
         <div class="sidebar">
             <div class="profile">
             
-            <h2><?php echo $_SESSION['username']?></h2>
+            <h2></h2>
             <p>Admin</p>
             </div>
             <ul>
@@ -178,7 +198,7 @@ input[type=submit]:hover {
                     </a>
                 </li>
                 <li>
-                    <a href="admin_wip.php">
+                    <a href="admin_wip.php" class="active">
                         
                         <span class="item">WIP Inventory</span>
                     </a>
@@ -219,22 +239,33 @@ input[type=submit]:hover {
 <div class="box">
 
 <div>
-  <form action="/project/admin_warehouse.php" method="post">
-    <label for="fname">Warehouse ID</label>
-    <input type="text"  name="product_id" placeholder="Product ID">
+  <form action="/project/add_wip.php" method="post">
+    <label>Batch ID</label>
+    <input type="text"  name="batch_id" placeholder="Batch ID">
 
-    <label for="lname">Warehouse Name</label>
-    <input type="text"  name="product_name" placeholder="Product name">
+    <label>Component</label>
+    <input type="text"  name="component" placeholder="Component">
 
-    <label for="country">Location</label>
-    <input type="text"  name="quantity" placeholder="Quantity">
-    <label for="lname">Description</label>
-    <input type="text"  name="unit" placeholder="Unit">
+    <label>Workstation From</label>
+    <input type="text"  name="workstation_from" placeholder="Workstation From">
+    <label>Time(Deposited)</label>
+    <input type="text"  name="time_deposited" placeholder="Time(Deposited)">
+    <label>Sender</label>
+    <input type="text"  name="sender" placeholder="Sender Name">
+
+    <label>Workstation To</label>
+    <input type="text"  name="workstation_to" placeholder="Workstation To">
+    <label>Time(Picked Up)</label>
+    <input type="text"  name="time_picked" placeholder="Time(Picked Up)">
+    <label>Reciever</label>
+    <input type="text"  name="reciever" placeholder="Reciever Name">
+
+    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     
     
     
   
-    <input type="submit" value="Submit">
+    
   </form>
 </div>
 
