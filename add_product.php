@@ -163,7 +163,7 @@ input[type=submit]:hover {
   </head>
   <body>
 
-  <!-- <div class="wrapper">
+  <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
             
@@ -229,7 +229,7 @@ input[type=submit]:hover {
   </ul>
   
        </div>
-</div>  -->
+</div> 
 
 
         

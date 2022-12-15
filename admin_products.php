@@ -243,70 +243,7 @@ color: white;
     
 
   
-<!-- <tr>
-//     <td>1001</td>
-//     <td>abc</td>
-//     <td>10</td>
-//     <td>Kg</td>
-//     <td></td>
-// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-//   </tr>
-//   <tr>
-//   <td>1001</td>
-//     <td>abc</td>
-//     <td>10</td>
-//     <td>Kg</td>
-//     <td></td>
-// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-//   </tr>
-//   <tr>
-//   <td>1001</td>
-//     <td>abc</td>
-//     <td>10</td>
-//     <td>Kg</td>
-//     <td></td>
-// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-//   </tr>
-//   <tr>
-//   <td>1001</td>
-//     <td>abc</td>
-//     <td>10</td>
-//     <td>Kg</td>
-//     <td></td>
-// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-//   </tr>
-//   <tr>
-//   <td>1001</td>
-//     <td>abc</td>
-//     <td>10</td>
-//     <td>Kg</td>
-//     <td></td>
-// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-//   </tr>
-//   <tr>
-//   <td>1001</td>
-//     <td>abc</td>
-//     <td>10</td>
-//     <td>Kg</td>
-//     <td></td>
-// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-//   </tr>
-//   <tr>
-//   <td>1001</td>
-//     <td>abc</td>
-//     <td>10</td>
-//     <td>Kg</td>
-//     <td></td>
-// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-//   </tr>
-//   <tr>
-//   <td>1001</td>
-//     <td>abc</td>
-//     <td>10</td>
-//     <td>Kg</td>
-//     <td></td>
-// <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-//   </tr> -->
+
   
   
 </table>
