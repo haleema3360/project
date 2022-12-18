@@ -1,15 +1,14 @@
 <?php
 include 'partial/dbconnect.php';
 if(isset($_POST['submit'])){
-        $product_id= $_POST["product_id"];
-        $product_name=$_POST["product_name"];
-        $quantity=$_POST["quantity"];
-        $unit=$_POST["unit"];
-        $status=$_POST["status"];
-          
-
-          $sql = "INSERT INTO products (product_id, product_name, quantity, unit, status) 
-          VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
+        $user_id= $_POST["user_id"];
+        $name= $_POST["name"];
+        $dob=$_POST["dob"];
+        $gender=$_POST["gender"];
+        $phone=$_POST["phone"];
+        $address=$_POST["address"];
+        $sql = "INSERT INTO profile (user_id,name, dob, gender, phone, address) 
+          VALUES ('$user_id', '$name', '$dob', '$gender', '$phone', '$address')";
           $result = mysqli_query($conn, $sql);
           if($result){
             // header("location: admin_products.php");
@@ -17,7 +16,7 @@ if(isset($_POST['submit'])){
             echo"Data insrted";
             
             
-            header("location: admin_products.php");
+            header("location: admin_profile.php");
             exit;
             
           }
@@ -25,9 +24,40 @@ if(isset($_POST['submit'])){
           die(mysqli_error($conn));
             
            }
-          }
- 
+}
 ?>
+
+<!-- //         $sql= "select * from profile where user_id='$user_id'";
+//     $sql = mysqli_query($conn,$select);
+//     $row = mysqli_fetch_assoc($sql);
+//     $result= $row['user_id'];
+//     if($result === $id)
+//     {
+   
+//        $update = "update profile set name='$name',dob='$dob',gender='$gender',phone='$phone',address='$address' where id='$id'";
+//        $sql2=mysqli_query($conn,$update);
+// if($sql2)
+//        { 
+//            /*Successful*/
+//            header('location:admin_profile.php');
+//        }
+//        else
+//        {
+//            /*sorry your profile is not update*/
+//            header('location:edit_admin_info.php');
+//        }
+//     }
+//     else
+//     {
+//         /*sorry your id is not match*/
+//         header('location:edit_admin_info.php');
+//     }
+//  }
+// ?> -->
+
+          
+
+          
 <!doctype html>
 <html lang="en">
   <head>
@@ -39,8 +69,7 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
-   <style>
-   .content {
+   <style>.content {
 	border: 1px;
 	
 	margin-top: 30px;
@@ -239,25 +268,29 @@ input[type=submit]:hover {
 <h2 class="heading"> Add Product</h2>
 <div class="box">
 <div>
-  <form action="/project/add_product.php" method="post">
-    <label>Product ID</label>
-    <input type="text"  name="product_id" placeholder="Product ID">
+  <form action="/project/edit_admin_info.php" method="post">
+
+  <label>Name</label>
+    <input type="text"  name="name" placeholder="name">
+    <br>
+    <label>User ID</label>
+    <input type="text"  name="user_id" placeholder="user ID">
     <br>
 
-    <label>Product Name</label>
-    <input type="text"  name="product_name" placeholder="Product name">
+    <label>Date of Birth</label>
+    <input type="date"  name="dob" placeholder="Date of Birth">
     <br>
 
-    <label>Quantity</label>
-    <input type="text"  name="quantity" placeholder="Quantity">
+    <label>Gender</label>
+    <input type="text"  name="gender" placeholder="gender">
     <br>
-    <label>Unit</label>
+    <label>Phone Number</label>
     <br>
-    <input type="text"  name="unit" placeholder="Unit">
+    <input type="text"  name="phone" placeholder="Phone number">
     <br>
-    <label>Status</label>
+    <label>Address</label>
     <br>
-    <input type="text"  name="status" placeholder="Status">
+    <input type="text"  name="address" placeholder="Address">
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     
     

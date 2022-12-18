@@ -6,6 +6,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     exit;
 }
 ?>
+<?php
+include 'partial/dbconnect.php';
+?>
 
 
 <!doctype html>
@@ -191,84 +194,57 @@ color: white;
         
   <tr class="heading">
  <td> <h3><u>Products Orders</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="product_order.php">Order New Product</a></button></td>
+ <td><button type="button" class="btn btn-primary"> <a class="but" href="add_porders.php">Order New Product</a></button></td>
   	</tr>
   
       <table class="products">
-  <tr>
+        <thead>
+        <tr>
     <th>Product ID</th>
     <th>Product Name</th>
     <th>Quantity</th>
     <th>Unit</th>
+    <th>Ordered From</th>
+    <th>Ordered On</th>
     <th>Status</th>
-    <th>Edit</th>
+    <th>Action</th>
   </tr>
-  <tr>
-    <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td>
-  </td>
-  <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
- 
+        </thead>
+        <tbody>
+        <?php
+  $sql = "SELECT * FROM `product_orders`";
+  $result = mysqli_query($conn, $sql);
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       $product_id=$row['product_id'];
+        $product_name=$row['product_name'];
+        $quantity=$row['quantity'];
+          $unit=$row['unit']; 
+          $ordered_from=$row['ordered_from']; 
+          $ordered_on=$row['ordered_on'];
+          $status=$row['status'];
+          echo '<tr>
+              <td>'.$row["product_id"].'</td>
+              <td>'.$row["product_name"].'</td>
+              <td>'.$row["quantity"].'</td>
+               <td>'.$row["unit"].'</td>
+               <td>'.$row["ordered_from"].'</td>
+               <td>'.$row["ordered_on"].'</td>
+
+               <td>'.$row["status"].'</td>
+               <td>
+               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+</td>
+              
+         
+             </tr>';
+  }
+}
+?>
+
+
+        </tbody>
   
 </table>
 

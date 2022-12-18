@@ -226,7 +226,7 @@ color: white;
        $sender=$row['sender'];
        $workstation_to=$row['workstation_to'];
        $time_picked=$row['time_picked'];
-       $reciever=$row['reciever'];
+       $receiver=$row['receiver'];
           echo '<tr>
               <td>'.$row["batch_id"].'</td>
               <td>'.$row["component"].'</td>
@@ -235,7 +235,7 @@ color: white;
                <td>'.$row["sender"].'</td>
                <td>'.$row["workstation_to"].'</td>
                <td>'.$row["time_picked"].'</td>
-               <td>'.$row["reciever"].'</td>
+               <td>'.$row["receiver"].'</td>
                <td>
                <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
                <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>

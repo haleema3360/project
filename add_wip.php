@@ -8,11 +8,11 @@ if(isset($_POST['submit'])){
         $sender=$_POST["sender"];
         $workstation_to=$_POST["workstation_to"];
         $time_picked=$_POST["time_picked"];
-        $reciever=$_POST["reciever"];
+        $receiver=$_POST["receiver"];
           
 
-          $sql = "INSERT INTO wip(batch_id, component, workstation_from, time_deposited, sender, workstation_to, time_picked, reciever)
-           VALUES ('$batch_id', '$component', '$workstation_from', ' $time_deposited', '$sender', '$workstation_to', '$time_picked', '$reciever')";
+          $sql = "INSERT INTO wip(batch_id, component, workstation_from, time_deposited, sender, workstation_to, time_picked, receiver)
+           VALUES ('$batch_id', '$component', '$workstation_from', ' $time_deposited', '$sender', '$workstation_to', '$time_picked', '$receiver')";
           $result = mysqli_query($conn, $sql);
           if($result){
             echo"Data insrted";
@@ -257,8 +257,8 @@ input[type=submit]:hover {
     <input type="text"  name="workstation_to" placeholder="Workstation To">
     <label>Time(Picked Up)</label>
     <input type="text"  name="time_picked" placeholder="Time(Picked Up)">
-    <label>Reciever</label>
-    <input type="text"  name="reciever" placeholder="Reciever Name">
+    <label>Receiver</label>
+    <input type="text"  name="receiver" placeholder="Receiver Name">
 
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     

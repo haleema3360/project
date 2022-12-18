@@ -6,7 +6,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     exit;
 }
 ?>
-
+<?php
+include 'partial/dbconnect.php';
+?>
 
 <!doctype html>
 <html lang="en">
@@ -20,12 +22,12 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
    <style>.content {
-	border: 1px;
-	
-	margin-top: 40px;
-	margin-bottom: 60px;
-	margin-right: 0px;
-	margin-left: 250px;
+  border: 1px;
+  
+  margin-top: 40px;
+  margin-bottom: 60px;
+  margin-right: 0px;
+  margin-left: 250px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -39,12 +41,12 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 }
 
  .content .box {
-	  padding: 5px;
-	  width: 85%;
-	  
-	  
+    padding: 5px;
+    width: 85%;
+    
+    
 
-	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -191,10 +193,11 @@ color: white;
         
   <tr class="heading">
  <td> <h3><u>Finished Goods Inventory</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="add_product.php"> Add Item</a></button> </td>
-  	</tr>
+ <td><button type="button" class="btn btn-primary"> <a class="but" href="add_finishedg.php"> Add Item</a></button> </td>
+    </tr>
   
-      <table class="products">
+  <table class="products">
+    <thead>
   <tr>
     <th>Product ID</th>
     <th>Product</th>
@@ -202,91 +205,42 @@ color: white;
     <th>Type</th>
     <th>Quantity</th>
     <th>Client</th>
-    <th>Edit</th>
+    <th>Action</th>
     
   </tr>
-  <tr>
-    <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    
-    
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
+  </thead>
+  <tbody>
+  <?php
+  $sql = "SELECT * FROM `finished_goods`";
+  $result = mysqli_query($conn, $sql);
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       $product_id=$row['product_id'];
+       $product=$row['product'];
+       $division=$row['division'];
+       $type=$row['type']; 
+       $quantity=$row['quantity'];
+       $client=$row['client'];
+       
+          echo '<tr>
+              <td>'.$row["product_id"].'</td>
+              <td>'.$row["product"].'</td>
+              <td>'.$row["division"].'</td>
+               <td>'.$row["type"].'</td>
+               <td>'.$row["quantity"].'</td>
+               <td>'.$row["client"].'</td>
+               
+               <td>
+               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+</td>
+              
+         
+             </tr>';
+  }
+}
+?>
+</tbody>
   
   
 </table>

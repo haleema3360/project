@@ -6,11 +6,11 @@ if(isset($_POST['submit'])){
         $type=$_POST["type"];
         $quantity=$_POST["quantity"];
         $units=$_POST["units"];
-        $recieved_date=$_POST["recieved_date"];
+        $received_date=$_POST["received_date"];
           
 
-          $sql = "INSERT INTO raw_materials (sku_id, material, type, quantity, units, recieved_date)
-           VALUES ('$sku_id', '$material', '$type', '$quantity', '$units', '$recieved_date')";
+          $sql = "INSERT INTO raw_materials (sku_id, material, type, quantity, units, received_date)
+           VALUES ('$sku_id', '$material', '$type', '$quantity', '$units', '$received_date')";
           $result = mysqli_query($conn, $sql);
           if($result){
             echo"Data insrted";
@@ -253,8 +253,8 @@ input[type=submit]:hover {
     <br>
     <label>Units</label>
     <input type="text"  name="units" placeholder="Units">
-    <label>Recieved Date</label>
-    <input type="text"  name="recieved_date" placeholder="yyyy-mm-dd">
+    <label>Received Date</label>
+    <input type="text"  name="received_date" placeholder="yyyy-mm-dd">
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 
   

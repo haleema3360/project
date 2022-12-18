@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -6,6 +5,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     header("location: login.php");
     exit;
 }
+?>
+<?php
+include 'partial/dbconnect.php';
 ?>
 
 
@@ -21,12 +23,12 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
    <style>.content {
-	border: 1px;
-	
-	margin-top: 40px;
-	margin-bottom: 60px;
-	margin-right: 0px;
-	margin-left: 250px;
+  border: 1px;
+  
+  margin-top: 40px;
+  margin-bottom: 60px;
+  margin-right: 0px;
+  margin-left: 250px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -40,12 +42,12 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 }
 
  .content .box {
-	  padding: 5px;
-	  width: 85%;
-	  
-	  
+    padding: 5px;
+    width: 85%;
+    
+    
 
-	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -192,10 +194,11 @@ color: white;
         
   <tr class="heading">
  <td> <h3><u>MRO Inventory</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="add_product.php"> Add Item</a></button> </td>
-  	</tr>
+ <td><button type="button" class="btn btn-primary"> <a class="but" href="add_mro.php"> Add Item</a></button> </td>
+    </tr>
   
       <table class="products">
+  <thead>
   <tr>
     <th>Part No</th>
     <th>Part Name</th>
@@ -207,80 +210,41 @@ color: white;
     
     
   </tr>
-  <tr>
-    <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  
+</thead>
+<tbody>
+
+</tbody>
+<?php
+  $sql = "SELECT * FROM `mro`";
+  $result = mysqli_query($conn, $sql);
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       $part_no=$row['part_no'];
+       $part_name=$row['part_name'];
+       $type=$row['type'];
+       $machine=$row['machine']; 
+       $department=$row['department'];
+       
+       
+          echo '<tr>
+              <td>'.$row["part_no"].'</td>
+              <td>'.$row["part_name"].'</td>
+              <td>'.$row["type"].'</td>
+               <td>'.$row["machine"].'</td>
+               <td>'.$row["department"].'</td>
+               
+               
+               <td>
+               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+</td>
+              
+         
+             </tr>';
+  }
+}
+?>
+</tbody>
   
 </table>
 

@@ -6,6 +6,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     exit;
 }
 ?>
+<?php
+include 'partial/dbconnect.php';
+?>
+
 
 
 <!doctype html>
@@ -116,8 +120,11 @@ color: white;
     
 	
 }
-.btn-link{
-  margin-left: 750px;
+.btn-secondary{
+  margin-left: 490px;
+}
+.namee{
+  margin-left: 0px;
 }
 
 </style>
@@ -196,60 +203,71 @@ color: white;
   
        </div>
 </div>
+   
 
-        
+  
 <div class="content">
 <h2><u>Profile</u></h2>
 
 <div class="box">
 
 <table class="user-info">
-
+ <tr class="heading">
+ <tr>
+              <td><h4>Username</td>
+              <td><h4><?php echo $_SESSION['username']?></h4></td>
+              <td><button type="button" class="btn btn-secondary"><a href="edit_admin_info.php">Add Details</button></td>
+              </tr>
  
  
-
-
-        
-  <tr class="heading">
- <td> <h3><u>Name</u></h3></td>
- <td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
   	</tr>
+    <tbody>
+    <?php
+  $sql = "SELECT * FROM `profile`";
+  $result = mysqli_query($conn, $sql);
+  ?>
+    <?php
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       
+      ?>
+      <tr>
+      <td><h2 class="namee"><?php echo $row['name']?></h2></td>
+      
+      </tr>
+        <tr>
+              <td>UserID</td>
+              <td><?php echo $row['user_id']?></td>
+              </tr>
+              
+              <tr>
+              <td>Date of Birth</td>
+              <td><?php echo $row['dob']?></td>
+              </tr>
+              <tr>
+              <td>Gender</td>
+              <td><?php echo $row['gender']?></td>
+              </tr>
+              <tr>
+              <td>Designation</td>
+              <td>Admin</td>
+              </tr>
+              <tr>
+              <td>Phone Number</td>
+              <td><?php echo $row['phone']?></td>
+              </tr>
+              <tr>
+              <td>Address</td>  
+              <td><?php echo $row['address']?></td>
+              </tr>
+           
+ <?php                        
+}
+    }
+?>
+</tbody>
   
-  <tr>
-    <td>User ID</td>
-    
-    <td>01</td>
-  </tr>
-  <tr>
-    <td>Username</td>
-    
-    <td><?php echo $_SESSION['username']?></td>
-  </tr>
-  <tr>
-    <td>Date of Birth</td>
-    
-    <td>23/10/1999</td>
-  </tr>
-  <tr>
-    <td>Gender</td>
-    
-    <td>F</td>
-  </tr>
-  <tr>
-    <td>Designation</td>
-    
-    <td>Admin</td>
-  </tr>
-  <tr>
-    <td>Phone Number</td>
-    
-    <td>987654656</td>
-  </tr>
-  <tr>
-    <td>Address</td>
-    
-    <td>Bangalore</td>
-  </tr>
+
   
 </table>
         </div>

@@ -223,14 +223,14 @@ font-size: 30px;
         $type=$row['type'];
           $quantity=$row['quantity']; 
           $units=$row['units'];
-          $recieved_date=$row['recieved_date'];
+          $received_date=$row['received_date'];
           echo '<tr>
               <td>'.$row["sku_id"].'</td>
               <td>'.$row["material"].'</td>
               <td>'.$row["type"].'</td>
                <td>'.$row["quantity"].'</td>
                <td>'.$row["units"].'</td>
-               <td>'.$row["recieved_date"].'</td>
+               <td>'.$row["received_date"].'</td>
                <td>
                <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
                <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>

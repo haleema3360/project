@@ -2,22 +2,24 @@
 include 'partial/dbconnect.php';
 if(isset($_POST['submit'])){
         $product_id= $_POST["product_id"];
-        $product_name=$_POST["product_name"];
+        $product=$_POST["product"];
+        $division=$_POST["division"];
+        $type=$_POST["type"];
         $quantity=$_POST["quantity"];
-        $unit=$_POST["unit"];
-        $status=$_POST["status"];
+        $client=$_POST["client"];
+
           
 
-          $sql = "INSERT INTO products (product_id, product_name, quantity, unit, status) 
-          VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
+          $sql = "INSERT INTO finished_goods (product_id, product,division, type , quantity, client) 
+          VALUES ('$product_id', '$product', '$division','$type', '$quantity','$client')";
           $result = mysqli_query($conn, $sql);
           if($result){
             // header("location: admin_products.php");
             // 
-            echo"Data insrted";
+            echo"Data inserted";
             
             
-            header("location: admin_products.php");
+            header("location: admin_finishedg.php");
             exit;
             
           }
@@ -25,8 +27,7 @@ if(isset($_POST['submit'])){
           die(mysqli_error($conn));
             
            }
-          }
- 
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,14 +40,13 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
-   <style>
-   .content {
-	border: 1px;
-	
-	margin-top: 30px;
-	margin-bottom: 60px;
-	margin-right: 0px;
-	margin-left: 240px;
+   <style>.content {
+  border: 1px;
+  
+  margin-top: 30px;
+  margin-bottom: 60px;
+  margin-right: 0px;
+  margin-left: 240px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -60,12 +60,12 @@ if(isset($_POST['submit'])){
 }
 
  .content .box {
-	  padding: 5px;
-	  width: 85%;
-	  
-	  
+    padding: 5px;
+    width: 85%;
+    
+    
 
-	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -109,9 +109,9 @@ input[type=text], select {
   width: 95%;
   padding: 5px 10px;
   margin-top: 10px;
-	margin-bottom: 10px;
-	margin-right: 0px;
-	margin-left: 10px;
+  margin-bottom: 10px;
+  margin-right: 0px;
+  margin-left: 10px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -180,7 +180,7 @@ input[type=submit]:hover {
                 </li>
                     
                 <li>
-                    <a href="admin_products.php" class="active">
+                    <a href="admin_products.php">
                         
                         <span class="item">Products</span>
                     </a>
@@ -204,7 +204,7 @@ input[type=submit]:hover {
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php">
+                    <a href="admin_finishedg.php"  class="active">
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
@@ -236,47 +236,35 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading"> Add Product</h2>
+<h2 class="heading"> Add Item</h2>
 <div class="box">
 <div>
-  <form action="/project/add_product.php" method="post">
+  <form action="/project/add_finishedg.php" method="post">
     <label>Product ID</label>
     <input type="text"  name="product_id" placeholder="Product ID">
     <br>
 
-    <label>Product Name</label>
-    <input type="text"  name="product_name" placeholder="Product name">
+    <label>Product</label>
+    <input type="text"  name="product" placeholder="product">
     <br>
 
+    <label>Division</label>
+    <input type="text"  name="division" placeholder="division">
+    <br>
+    <label>Type</label>
+    <br>
+    <input type="text"  name="type" placeholder="type">
+    <br>
     <label>Quantity</label>
-    <input type="text"  name="quantity" placeholder="Quantity">
     <br>
-    <label>Unit</label>
+    <input type="text"  name="quantity" placeholder="quantity">
     <br>
-    <input type="text"  name="unit" placeholder="Unit">
+    
+    <label>Client</label>
     <br>
-    <label>Status</label>
-    <br>
-    <input type="text"  name="status" placeholder="Status">
+    <input type="text"  name="client" placeholder="client">
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-    
-    
-    <!-- <div class="dropdown"> -->
-      
-  <!-- <button class="btn btn-secondary dropdown-toggle" type="button" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
- -->
-    
   
-    
   </form>
   </div>
 </div>

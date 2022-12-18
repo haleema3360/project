@@ -5,19 +5,21 @@ if(isset($_POST['submit'])){
         $product_name=$_POST["product_name"];
         $quantity=$_POST["quantity"];
         $unit=$_POST["unit"];
+        
+        $ordered_from=$_POST["ordered_from"];
+        $ordered_on=$_POST["ordered_on"];
         $status=$_POST["status"];
           
 
-          $sql = "INSERT INTO products (product_id, product_name, quantity, unit, status) 
-          VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
+          $sql = "INSERT INTO product_orders (product_id, product_name, quantity, unit,ordered_from, ordered_on, status) 
+          VALUES ('$product_id', '$product_name', '$quantity', '$unit','$ordered_from', '$ordered_on', '$status')";
           $result = mysqli_query($conn, $sql);
           if($result){
-            // header("location: admin_products.php");
-            // 
+ 
             echo"Data insrted";
             
             
-            header("location: admin_products.php");
+            header("location: admin_porders.php");
             exit;
             
           }
@@ -25,8 +27,7 @@ if(isset($_POST['submit'])){
           die(mysqli_error($conn));
             
            }
-          }
- 
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,8 +40,7 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
-   <style>
-   .content {
+   <style>.content {
 	border: 1px;
 	
 	margin-top: 30px;
@@ -180,13 +180,13 @@ input[type=submit]:hover {
                 </li>
                     
                 <li>
-                    <a href="admin_products.php" class="active">
+                    <a href="admin_products.php">
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php">
+                    <a href="admin_porders.php"  class="active">
                         
                         <span class="item">Product Orders</span>
                     </a>
@@ -236,10 +236,10 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading"> Add Product</h2>
+<h2 class="heading"> Add Product Order Details</h2>
 <div class="box">
 <div>
-  <form action="/project/add_product.php" method="post">
+  <form action="/project/add_porders.php" method="post">
     <label>Product ID</label>
     <input type="text"  name="product_id" placeholder="Product ID">
     <br>
@@ -254,6 +254,14 @@ input[type=submit]:hover {
     <label>Unit</label>
     <br>
     <input type="text"  name="unit" placeholder="Unit">
+    <br>
+    <label>Ordered From</label>
+    <br>
+    <input type="text"  name="ordered_from" placeholder="Ordered from">
+    <br>
+    <label>Ordered On</label>
+    <br>
+    <input type="date"  name="ordered_on" placeholder="Ordered On">
     <br>
     <label>Status</label>
     <br>
