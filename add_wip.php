@@ -235,7 +235,7 @@ input[type=submit]:hover {
 
       
 <div class="content"> 
-<h2 class="heading">Add Warehouse</h2> 
+<h2 class="heading">Add Item</h2> 
 <div class="box">
 
 <div>
@@ -249,14 +249,14 @@ input[type=submit]:hover {
     <label>Workstation From</label>
     <input type="text"  name="workstation_from" placeholder="Workstation From">
     <label>Time(Deposited)</label>
-    <input type="text"  name="time_deposited" placeholder="Time(Deposited)">
+    <input type="time"  name="time_deposited" placeholder="Time(Deposited)">
     <label>Sender</label>
     <input type="text"  name="sender" placeholder="Sender Name">
 
     <label>Workstation To</label>
     <input type="text"  name="workstation_to" placeholder="Workstation To">
     <label>Time(Picked Up)</label>
-    <input type="text"  name="time_picked" placeholder="Time(Picked Up)">
+    <input type="time"  name="time_picked" placeholder="Time(Picked Up)">
     <label>Receiver</label>
     <input type="text"  name="receiver" placeholder="Receiver Name">
 

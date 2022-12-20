@@ -23,24 +23,24 @@ include 'partial/dbconnect.php';
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
    <style>.content {
-	border: 1px;
-	
-	margin-top: 40px;
-	margin-bottom: 60px;
-	margin-right: 0px;
-	margin-left: 250px;
+  border: 1px;
+  
+  margin-top: 40px;
+  margin-bottom: 60px;
+  margin-right: 0px;
+  margin-left: 250px;
     word-wrap: break-word;
     background-color:white;
 }
    
 
  .content .box {
-	  padding: 5px;
-	  width: 85%;
-	  
-	  
+    padding: 5px;
+    width: 85%;
+    
+    
 
-	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -194,47 +194,40 @@ color: white;
         
   <tr class="heading">
  <td> <h3><u>Products Orders</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="add_porders.php">Order New Product</a></button></td>
-  	</tr>
+ <td><button type="button" class="btn btn-primary"> <a class="but" href="add_porders.php">Add Product Order</a></button></td>
+    </tr>
   
-      <table class="products">
-        <thead>
-        <tr>
+  <table class="products">
+  <thead>
+  <tr>
     <th>Product ID</th>
     <th>Product Name</th>
     <th>Quantity</th>
     <th>Unit</th>
-    <th>Ordered From</th>
-    <th>Ordered On</th>
     <th>Status</th>
-    <th>Action</th>
+    <th>Edit</th>
   </tr>
-        </thead>
-        <tbody>
-        <?php
-  $sql = "SELECT * FROM `product_orders`";
+</thead>
+<tbody>
+  <?php
+  $sql = "SELECT * FROM `porders`";
   $result = mysqli_query($conn, $sql);
     if ($result) {
       while($row = mysqli_fetch_assoc($result)) {
        $product_id=$row['product_id'];
-        $product_name=$row['product_name'];
-        $quantity=$row['quantity'];
-          $unit=$row['unit']; 
-          $ordered_from=$row['ordered_from']; 
-          $ordered_on=$row['ordered_on'];
-          $status=$row['status'];
+       $product_name=$row['product_name'];
+       $quantity=$row['quantity'];
+       $unit=$row['unit']; 
+       $status=$row['status'];
           echo '<tr>
               <td>'.$row["product_id"].'</td>
               <td>'.$row["product_name"].'</td>
               <td>'.$row["quantity"].'</td>
                <td>'.$row["unit"].'</td>
-               <td>'.$row["ordered_from"].'</td>
-               <td>'.$row["ordered_on"].'</td>
-
                <td>'.$row["status"].'</td>
                <td>
-               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
-               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+               <button type="button" class="btn btn-link"> <a href="edit_porders.php?editid='.$product_id.'">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="delete_porders.php?deleteid='.$product_id.'"> <span class="bi bi-trash"></span></button>
 </td>
               
          
@@ -243,8 +236,8 @@ color: white;
 }
 ?>
 
-
-        </tbody>
+</tbody> 
+ 
   
 </table>
 

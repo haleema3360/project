@@ -24,12 +24,12 @@ include 'partial/dbconnect.php';
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
    <style>.content {
-	border: 1px;
-	
-	margin-top: 40px;
-	margin-bottom: 60px;
-	margin-right: 0px;
-	margin-left: 250px;
+  border: 1px;
+  
+  margin-top: 40px;
+  margin-bottom: 60px;
+  margin-right: 0px;
+  margin-left: 250px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -49,12 +49,12 @@ color: white;
    
 
  .content .box {
-	  padding: 5px;
-	  width: 85%;
-	  
-	  
+    padding: 5px;
+    width: 85%;
+    
+    
 
-	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -198,7 +198,7 @@ font-size: 30px;
   <tr class="heading">
  <td> <h3><u>Raw Materials</u></h3></td>
  <td><button type="button" class="btn btn-primary"> <a class="but" href="add_rawmaterials.php">Add Raw Material</a></button></td>
-  	</tr>
+    </tr>
   
   <table class="products">
     <thead>
@@ -208,7 +208,7 @@ font-size: 30px;
     <th>Type</th>
     <th>Quantity</th>
     <th>Units</th>
-    <th>Recieved Date</th>
+    <th>Received Date</th>
     <th>Edit</th>
   </tr>
 </thead>
@@ -223,7 +223,7 @@ font-size: 30px;
         $type=$row['type'];
           $quantity=$row['quantity']; 
           $units=$row['units'];
-          $received_date=$row['received_date'];
+          $recieved_date=$row['received_date'];
           echo '<tr>
               <td>'.$row["sku_id"].'</td>
               <td>'.$row["material"].'</td>
@@ -232,31 +232,19 @@ font-size: 30px;
                <td>'.$row["units"].'</td>
                <td>'.$row["received_date"].'</td>
                <td>
-               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
-               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+               <button type="button" class="btn btn-link"> <a href="edit_rm.php?editid='.$sku_id.'">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="delete_rm.php?deleteid='.$sku_id.'"> <span class="bi bi-trash"></span></button>
 </td>
-              
-         
+
              </tr>';
   }
 }
 ?>
 
 </tbody>
-  
-
 </table>
-
-
-</div>
-        
+</div>      
 </div>
 </div>
-
-
-  
-
-    
-
 </body>
 </html>

@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 include 'partial/dbconnect.php';
 ?>
 <!DOCTYPE html>
@@ -35,4 +35,4 @@ if($result){
 </div>
 </body>
 </html>
-</div>
+</div> -->

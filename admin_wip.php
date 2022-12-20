@@ -24,12 +24,12 @@ include 'partial/dbconnect.php';
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
    <style>.content {
-	border: 1px;
-	
-	margin-top: 40px;
-	margin-bottom: 60px;
-	margin-right: 0px;
-	margin-left: 180px;
+  border: 1px;
+  
+  margin-top: 40px;
+  margin-bottom: 60px;
+  margin-right: 0px;
+  margin-left: 180px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -43,12 +43,12 @@ include 'partial/dbconnect.php';
 }
 
  .content .box {
-	  padding: 5px;
-	  width: 85%;
-	  
-	  
+    padding: 5px;
+    width: 85%;
+    
+    
 
-	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -196,7 +196,7 @@ color: white;
   <tr class="heading">
  <td> <h3><u>WIP Inventory</u></h3></td>
  <td><button type="button" class="btn btn-primary"> <a class="but" href="add_wip.php"> Add Item</a></button> </td>
-  	</tr>
+    </tr>
   
       <table class="products">
         <thead>
@@ -205,10 +205,10 @@ color: white;
     <th>Component</th>
     <th>Workstation From</th>
     <th>Time (Deposited)</th>
-    <th>Person</th>
+    <th>Sender</th>
     <th>Workstation To</th>
     <th>Time (Picked up)</th>
-    <th>Person</th>
+    <th>Reciever</th>
     <th>Action</th>
   </tr>
   </thead>
@@ -226,7 +226,7 @@ color: white;
        $sender=$row['sender'];
        $workstation_to=$row['workstation_to'];
        $time_picked=$row['time_picked'];
-       $receiver=$row['receiver'];
+       $reciever=$row['receiver'];
           echo '<tr>
               <td>'.$row["batch_id"].'</td>
               <td>'.$row["component"].'</td>
@@ -237,8 +237,8 @@ color: white;
                <td>'.$row["time_picked"].'</td>
                <td>'.$row["receiver"].'</td>
                <td>
-               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
-               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+               <button type="button" class="btn btn-link"> <a href="edit_wip.php?editid='.$batch_id.'">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="delete_wip.php?deleteid='.$batch_id.'"> <span class="bi bi-trash"></span></button>
 </td>
               
          

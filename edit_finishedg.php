@@ -1,16 +1,36 @@
 <?php
-session_start();
+include 'partial/dbconnect.php';
+$product_id=$_GET['editid']; 
 
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-    header("location: login.php");
-    exit;
+if(isset($_POST['update'])){
+        $product_id= $_POST["product_id"];
+        $product=$_POST["product"];
+        $division=$_POST["division"];
+        $type=$_POST["type"];
+        $quantity=$_POST["quantity"];
+        $client=$_POST["client"];
+
+          
+
+          $sql = "UPDATE `finished_goods` SET `product_id`='$product_id',`product`='$product',
+          `division`='$division',`type`='$type',`quantity`='$quantity',`client`='$client' WHERE product_id='$product_id'";
+          $result = mysqli_query($conn, $sql);
+          if($result){
+            // header("location: admin_products.php");
+            // 
+            echo"Data inserted";
+            
+            
+            header("location: admin_finishedg.php");
+            exit;
+            
+          }
+          else{
+          die(mysqli_error($conn));
+            
+           }
 }
 ?>
-<?php
-include 'partial/dbconnect.php';
-?>
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,10 +45,10 @@ include 'partial/dbconnect.php';
    <style>.content {
   border: 1px;
   
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 60px;
   margin-right: 0px;
-  margin-left: 250px;
+  margin-left: 240px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -87,30 +107,58 @@ font-size: 30px;
   border: 1px solid #ddd;
   padding: 8px;
 }
+input[type=text], select {
+  width: 95%;
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 0px;
+  margin-left: 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #0D4C92;
+  color: white;
+  padding: 14px 20px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #0D4C92;
+}
+.heading{
+  margin-left: 90px;
+  color: black;
+  margin-bottom: 20px;
+
+
+}
 
 
 
-.products tr:hover {background-color: #ddd;}
+
+
+.products tr:hover {background-color: #0D4C92;}
 
 .products th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 10px;
+  padding-bottom: 5px;
   text-align: left;
   background-color: #0D4C92;
   color: white;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    
-  background-color: #0D4C92;
-  margin-left: 630px;
-    margin-bottom: 7px;
-  
+    background-color: #0D4C92;
 }
-.but {
-color: white;
-}
-
 </style>
 
     
@@ -122,8 +170,8 @@ color: white;
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-           
-            <h2><?php echo $_SESSION['username']?></h2>
+            
+            <h2></h2>
             <p>Admin</p>
             </div>
             <ul>
@@ -134,7 +182,7 @@ color: white;
                 </li>
                     
                 <li>
-                    <a href="admin_products.php" class="active">
+                    <a href="admin_products.php">
                         
                         <span class="item">Products</span>
                     </a>
@@ -158,7 +206,7 @@ color: white;
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php">
+                    <a href="admin_finishedg.php"  class="active">
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
@@ -185,61 +233,45 @@ color: white;
   </ul>
   
        </div>
-</div>
+</div> 
+
 
         
-<div class="content">
+<div class="content"> 
+<h2 class="heading"> Add Item</h2>
 <div class="box">
-<table class="user-info">
-        
-  <tr class="heading">
- <td> <h3><u>Products</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="add_product.php"> Add Product</a></button> </td>
-    </tr>
-  
-  <table class="products">
-  <thead>
-  <tr>
-    <th>Product ID</th>
-    <th>Product Name</th>
-    <th>Quantity</th>
-    <th>Unit</th>
-    <th>Product Status</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <?php
-  $sql = "SELECT * FROM `products`";
-  $result = mysqli_query($conn, $sql);
-    if ($result) {
-      while($row = mysqli_fetch_assoc($result)) {
-       $product_id=$row['product_id'];
-        $product_name=$row['product_name'];
-        $quantity=$row['quantity'];
-          $unit=$row['unit']; 
-          $status=$row['status'];
-          echo '<tr>
-              <td>'.$row["product_id"].'</td>
-              <td>'.$row["product_name"].'</td>
-              <td>'.$row["quantity"].'</td>
-               <td>'.$row["unit"].'</td>
-               <td>'.$row["status"].'</td>
-               <td>
-               <button type="button" class="btn btn-link"> <a href="edit.php?editid='.$product_id.'">  <span class="bi bi-pencil-fill"></span></a></button>
-               <button type="button" class="btn btn-link"><a href="delete.php?deleteid='.$product_id.'"> <span class="bi bi-trash"></span></button>
-</td>
-              
-         
-             </tr>';
-  }
-}
-?>
+<div>
+  <form action="/project/edit_finishedg.php" method="post">
+    <label>Product ID</label>
+    <input type="text"  name="product_id" placeholder="Product ID">
+    <br>
 
-</tbody> 
-</table>
-</div>       
+    <label>Product</label>
+    <input type="text"  name="product" placeholder="product">
+    <br>
+
+    <label>Division</label>
+    <input type="text"  name="division" placeholder="division">
+    <br>
+    <label>Type</label>
+    <br>
+    <input type="text"  name="type" placeholder="type">
+    <br>
+    <label>Quantity</label>
+    <br>
+    <input type="text"  name="quantity" placeholder="quantity">
+    <br>
+    
+    <label>Client</label>
+    <br>
+    <input type="text"  name="client" placeholder="client">
+    <button type="submit" class="btn btn-primary" name="update">Update</button>
+  
+  </form>
+  </div>
+</div>
+
 </div>
 </div>
-  </body>
+</body>
 </html>

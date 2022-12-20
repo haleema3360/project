@@ -235,8 +235,8 @@ color: white;
                
                
                <td>
-               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
-               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+               <button type="button" class="btn btn-link"> <a href="edit_mro.php?editid='.$part_no.'">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="delete_mro.php?deleteid='.$part_no.'"> <span class="bi bi-trash"></span></button>
 </td>
               
          

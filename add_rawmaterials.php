@@ -254,7 +254,7 @@ input[type=submit]:hover {
     <label>Units</label>
     <input type="text"  name="units" placeholder="Units">
     <label>Received Date</label>
-    <input type="text"  name="received_date" placeholder="yyyy-mm-dd">
+    <input type="date"  name="received_date" placeholder="date">
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 
   

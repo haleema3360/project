@@ -231,8 +231,8 @@ color: white;
                <td>'.$row["client"].'</td>
                
                <td>
-               <button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button>
-               <button type="button" class="btn btn-link"><a href="#"> <span class="bi bi-trash"></span></button>
+               <button type="button" class="btn btn-link"> <a href="edit_finishedg.php?editid='.$product_id.'">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="delete_finishedg.php?deleteid='.$product_id.'"> <span class="bi bi-trash"></span></button>
 </td>
               
          

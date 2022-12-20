@@ -5,17 +5,15 @@ if(isset($_POST['submit'])){
         $product_name=$_POST["product_name"];
         $quantity=$_POST["quantity"];
         $unit=$_POST["unit"];
-        
-        $ordered_from=$_POST["ordered_from"];
-        $ordered_on=$_POST["ordered_on"];
         $status=$_POST["status"];
           
 
-          $sql = "INSERT INTO product_orders (product_id, product_name, quantity, unit,ordered_from, ordered_on, status) 
-          VALUES ('$product_id', '$product_name', '$quantity', '$unit','$ordered_from', '$ordered_on', '$status')";
+          $sql = "INSERT INTO `porders` (product_id, product_name, quantity, unit, status) 
+          VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
           $result = mysqli_query($conn, $sql);
           if($result){
- 
+            // header("location: admin_products.php");
+            // 
             echo"Data insrted";
             
             
@@ -41,12 +39,12 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
    <style>.content {
-	border: 1px;
-	
-	margin-top: 30px;
-	margin-bottom: 60px;
-	margin-right: 0px;
-	margin-left: 240px;
+  border: 1px;
+  
+  margin-top: 30px;
+  margin-bottom: 60px;
+  margin-right: 0px;
+  margin-left: 240px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -60,12 +58,12 @@ if(isset($_POST['submit'])){
 }
 
  .content .box {
-	  padding: 5px;
-	  width: 85%;
-	  
-	  
+    padding: 5px;
+    width: 85%;
+    
+    
 
-	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -109,9 +107,9 @@ input[type=text], select {
   width: 95%;
   padding: 5px 10px;
   margin-top: 10px;
-	margin-bottom: 10px;
-	margin-right: 0px;
-	margin-left: 10px;
+  margin-bottom: 10px;
+  margin-right: 0px;
+  margin-left: 10px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -180,13 +178,13 @@ input[type=submit]:hover {
                 </li>
                     
                 <li>
-                    <a href="admin_products.php">
+                    <a href="admin_products.php" >
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php"  class="active">
+                    <a href="admin_porders.php" class="active">
                         
                         <span class="item">Product Orders</span>
                     </a>
@@ -236,7 +234,7 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading"> Add Product Order Details</h2>
+<h2 class="heading"> Add Product Order</h2>
 <div class="box">
 <div>
   <form action="/project/add_porders.php" method="post">
@@ -255,36 +253,11 @@ input[type=submit]:hover {
     <br>
     <input type="text"  name="unit" placeholder="Unit">
     <br>
-    <label>Ordered From</label>
-    <br>
-    <input type="text"  name="ordered_from" placeholder="Ordered from">
-    <br>
-    <label>Ordered On</label>
-    <br>
-    <input type="date"  name="ordered_on" placeholder="Ordered On">
-    <br>
     <label>Status</label>
     <br>
     <input type="text"  name="status" placeholder="Status">
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-    
-    
-    <!-- <div class="dropdown"> -->
-      
-  <!-- <button class="btn btn-secondary dropdown-toggle" type="button" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
- -->
-    
   
-    
   </form>
   </div>
 </div>
