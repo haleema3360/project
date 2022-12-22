@@ -209,7 +209,7 @@ font-size: 30px;
     <th>Quantity</th>
     <th>Units</th>
     <th>Received Date</th>
-    <th>Edit</th>
+    <th>Action</th>
   </tr>
 </thead>
 <tbody>

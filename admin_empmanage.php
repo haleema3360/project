@@ -6,7 +6,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     exit;
 }
 ?>
-
+<?php
+include 'partial/dbconnect.php';
+?>
 
 <!doctype html>
 <html lang="en">
@@ -112,7 +114,7 @@ color: white;
 
     
 
-    <title>Products</title>
+    <title>Employee Management</title>
   </head>
   <body>
 
@@ -191,10 +193,11 @@ color: white;
         
   <tr class="heading">
  <td> <h3><u>Employee Management</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href=""> Add User</a></button> </td>
+ <td><button type="button" class="btn btn-primary"> <a class="but" href="add_user.php">Add User</a></button> </td>
   	</tr>
   
       <table class="products">
+        <thead>
   <tr>
     <th>User ID</th>
     <th>Username</th>
@@ -203,89 +206,54 @@ color: white;
     <th>Designation</th>
     <th>Phone Number</th>
     <th>Address</th>
-    <th>Edit</th>
+    <th>Action</th>
+    
     
   </tr>
-  <tr>
-    <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
-  <tr>
-  <td>1001</td>
-    <td>abc</td>
-    <td>10</td>
-    <td>Kg</td>
-    <td></td>
-    <td></td>
-    <td></td>
-<td><button type="button" class="btn btn-link"> <a href="#">  <span class="bi bi-pencil-fill"></span></a></button></td>
-  </tr>
+  </thead>
+  <tbody>
+  <?php
+  $sql = "SELECT * FROM `user`";
+  $result = mysqli_query($conn, $sql);
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       $user_id=$row['user_id'];
+       $user_name=$row['user_name'];
+       $dob=$row['dob'];
+       $gender=$row['gender']; 
+       $designation=$row['designation'];
+       $phone=$row['phone']; 
+       $address=$row['address']; 
+       
+       
+          echo '<tr>
+              <td>'.$row["user_id"].'</td>
+              <td>'.$row["user_name"].'</td>
+              <td>'.$row["dob"].'</td>
+               <td>'.$row["gender"].'</td>
+               <td>'.$row["designation"].'</td>
+               <td>'.$row["phone"].'</td>
+               <td>'.$row["address"].'</td>
+               
+               
+              
+
+
+               <td>
+               <button type="button" class="btn btn-link"> <a href="edit_user.php?editid='.$user_id.'">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="delete_user.php?deleteid='.$user_id.'"> <span class="bi bi-trash"></span></button>
+</td>
+              
+         
+             </tr>';
+  }
+}
+?>
+
+
+
+  </tbody>
+  
   
   
 </table>

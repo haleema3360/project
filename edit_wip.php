@@ -13,16 +13,12 @@ if(isset($_POST['update'])){
         $receiver=$_POST["receiver"];
           
 
-        $sql = "UPDATE `wip` SET batch_id='$batch_id',component='$component',workstation_from='$workstation_from',time_deposited='$time_deposited',sender='$sender',workstation_to='$workstation_to',time_picked='$time_picked',receiver='$receiver' WHERE batch_id='$batch_id'";
+        $sql = "UPDATE `wip` SET batch_id='$batch_id',component='$component',workstation_from='$workstation_from',time_deposited='$time_deposited',sender='$sender',
+        workstation_to='$workstation_to',time_picked='$time_picked',receiver='$receiver' WHERE batch_id='$batch_id'";
           
         $result = mysqli_query($conn, $sql);
-          if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data insrted";
-            
-            
-            header("location: admin_wip.php");
+          if($result){         
+           header("location: admin_wip.php");
             exit;
             
           }

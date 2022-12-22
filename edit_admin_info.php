@@ -1,20 +1,22 @@
 <?php
 include 'partial/dbconnect.php';
-if(isset($_POST['submit'])){
-        $user_id= $_POST["user_id"];
-        $name= $_POST["name"];
+
+$user_id=$_GET['editid'];
+if(isset($_POST['update'])){
+        $user_id=$_POST['user_id'];
+        $name= $_POST['name'];
+        $username=$_POST['username'];
+        
         $dob=$_POST["dob"];
         $gender=$_POST["gender"];
         $phone=$_POST["phone"];
         $address=$_POST["address"];
-        $sql = "INSERT INTO profile (user_id,name, dob, gender, phone, address) 
-          VALUES ('$user_id', '$name', '$dob', '$gender', '$phone', '$address')";
+
+        $sql = "UPDATE `profile` SET `user_id` = '$user_id',`name`='$name' `username` = '$username',`dob`='$dob',
+        `gender`='$gender',`phone`='$phone',`address`='$address' WHERE user_id='$user_id'";
+
           $result = mysqli_query($conn, $sql);
           if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data insrted";
-            
             
             header("location: admin_profile.php");
             exit;
@@ -27,33 +29,7 @@ if(isset($_POST['submit'])){
 }
 ?>
 
-<!-- //         $sql= "select * from profile where user_id='$user_id'";
-//     $sql = mysqli_query($conn,$select);
-//     $row = mysqli_fetch_assoc($sql);
-//     $result= $row['user_id'];
-//     if($result === $id)
-//     {
-   
-//        $update = "update profile set name='$name',dob='$dob',gender='$gender',phone='$phone',address='$address' where id='$id'";
-//        $sql2=mysqli_query($conn,$update);
-// if($sql2)
-//        { 
-//            /*Successful*/
-//            header('location:admin_profile.php');
-//        }
-//        else
-//        {
-//            /*sorry your profile is not update*/
-//            header('location:edit_admin_info.php');
-//        }
-//     }
-//     else
-//     {
-//         /*sorry your id is not match*/
-//         header('location:edit_admin_info.php');
-//     }
-//  }
-// ?> -->
+
 
           
 
@@ -190,7 +166,7 @@ input[type=submit]:hover {
 
     
 
-    <title>Products</title>
+    <title>Edit Info</title>
   </head>
   <body>
 
@@ -203,13 +179,13 @@ input[type=submit]:hover {
             </div>
             <ul>
                 <li>
-                    <a href="admin_profile.php">
+                    <a href="admin_profile.php"  class="active">
                         <span class="item">Profile</span>
                     </a>
                 </li>
                     
                 <li>
-                    <a href="admin_products.php" class="active">
+                    <a href="admin_products.php">
                         
                         <span class="item">Products</span>
                     </a>
@@ -265,7 +241,7 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading"> Add Product</h2>
+<h2 class="heading">Edit Profile</h2>
 <div class="box">
 <div>
   <form action="/project/edit_admin_info.php" method="post">
@@ -274,8 +250,14 @@ input[type=submit]:hover {
     <input type="text"  name="name" placeholder="name">
     <br>
     <label>User ID</label>
-    <input type="text"  name="user_id" placeholder="user ID">
+    <input type="text"  name="user_id" placeholder="User ID">
     <br>
+    <label>UserName</label>
+    <input type="text"  name="user_name" placeholder="User name">
+    <br>
+    
+    
+    
 
     <label>Date of Birth</label>
     <input type="date"  name="dob" placeholder="Date of Birth">
@@ -291,22 +273,10 @@ input[type=submit]:hover {
     <label>Address</label>
     <br>
     <input type="text"  name="address" placeholder="Address">
-    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    <button type="submit" class="btn btn-primary" name="update">Update</button>
     
     
-    <!-- <div class="dropdown"> -->
-      
-  <!-- <button class="btn btn-secondary dropdown-toggle" type="button" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
- -->
+    
     
   
     

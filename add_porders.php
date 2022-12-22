@@ -12,10 +12,6 @@ if(isset($_POST['submit'])){
           VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
           $result = mysqli_query($conn, $sql);
           if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data insrted";
-            
             
             header("location: admin_porders.php");
             exit;
@@ -255,7 +251,14 @@ input[type=submit]:hover {
     <br>
     <label>Status</label>
     <br>
-    <input type="text"  name="status" placeholder="Status">
+    <select name="status" id="">
+                        <option value="" disabled hidden selected>Status</option>
+                        <option value="procurement">Procurement</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="warehousing">Warehousing</option>
+                        <option value="order fulfillment">Order fulfillment</option>
+                        <option value="transportation">Transportation</option>
+                    </select>
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
   
   </form>

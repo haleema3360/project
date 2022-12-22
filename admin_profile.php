@@ -30,7 +30,7 @@ include 'partial/dbconnect.php';
    <style>.content {
 	border: 1px;
 	
-	margin-top: 40px;
+	margin-top: 60px;
 	margin-bottom: 50px;
 	margin-right: 0px;
 	margin-left: 250px;
@@ -47,7 +47,7 @@ include 'partial/dbconnect.php';
 }
 
  .content .box {
-	  padding: 5px;
+	  padding: 10px;
 	  width: 85%;
   
 	  
@@ -76,7 +76,7 @@ include 'partial/dbconnect.php';
 
 .content .box.user-info th {
   padding-top: 8px;
-  padding-bottom: 12px;
+  padding-bottom: 18px;
   text-align: left;
  
 
@@ -106,7 +106,7 @@ color: white;
 .products tr:hover {background-color: #ddd;}
 
 .products th {
-  padding-top: 12px;
+  padding-top: 15px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #0D4C92;
@@ -126,6 +126,12 @@ color: white;
 .namee{
   margin-left: 0px;
 }
+.pencil{
+  margin-left: 860px;
+    margin-bottom: 7px;
+    position: absolute;
+}
+
 
 </style>
 
@@ -213,11 +219,7 @@ color: white;
 
 <table class="user-info">
  <tr class="heading">
- <tr>
-              <td><h4>Username</td>
-              <td><h4><?php echo $_SESSION['username']?></h4></td>
-              <td><button type="button" class="btn btn-secondary"><a href="edit_admin_info.php">Add Details</button></td>
-              </tr>
+ 
  
  
   	</tr>
@@ -228,43 +230,58 @@ color: white;
   ?>
     <?php
     if ($result) {
-      while($row = mysqli_fetch_assoc($result)) {
-       
-      ?>
-      <tr>
-      <td><h2 class="namee"><?php echo $row['name']?></h2></td>
       
-      </tr>
-        <tr>
-              <td>UserID</td>
-              <td><?php echo $row['user_id']?></td>
-              </tr>
-              
-              <tr>
-              <td>Date of Birth</td>
-              <td><?php echo $row['dob']?></td>
-              </tr>
-              <tr>
-              <td>Gender</td>
-              <td><?php echo $row['gender']?></td>
-              </tr>
-              <tr>
-              <td>Designation</td>
-              <td>Admin</td>
-              </tr>
-              <tr>
-              <td>Phone Number</td>
-              <td><?php echo $row['phone']?></td>
-              </tr>
-              <tr>
-              <td>Address</td>  
-              <td><?php echo $row['address']?></td>
-              </tr>
+        while($row = mysqli_fetch_assoc($result)) {
+          $name=$row['name'];
+          $user_id=$row['user_id'];
+          $username=$row['username'];
            
- <?php                        
+           $dob=$row['dob'];
+             $gender=$row['gender']; 
+             $designation=$row['designation'];
+             $phone=$row['phone']; 
+             $address=$row['address']; 
+             echo '<tr class="pencil">
+
+             <td><button type="button" class="btn btn-link">
+                <a href="edit_admin_info.php?editid='.$user_id.'">  <span class="bi bi-pencil-fill"></span></a></button></td>
+             </tr>
+             <tr>
+                <td>Name</td>
+                <td>'.$row["name"].'</td>
+                </tr>
+                <tr>
+                <td>User ID</td>
+                 <td>'.$row["user_id"].'</td>
+                 </tr>
+                 <tr>
+                 <td>User Name</td>
+                 <td>'.$row["username"].'</td>
+                 </tr>
+                 <tr>
+                 <td>Date of Birth</td>
+                 <td>'.$row["dob"].'</td>
+                 </tr>
+                 <tr>
+                 <td>Gender</td>
+                  <td>'.$row["gender"].'</td>
+                  </tr>
+                  <tr>
+                  <td>Designation</td>
+                  <td>'.$row["designation"].'</td>
+                  </tr>
+                  <tr>
+                  <td>Phone</td>
+                  <td>'.$row["phone"].'</td>
+                  </tr>
+                  <tr>
+                  <td>Address</td>
+                  <td>'.$row["address"].'</td>
+                  </tr>';
+  }
 }
-    }
 ?>
+      
 </tbody>
   
 

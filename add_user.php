@@ -1,22 +1,19 @@
 <?php
 include 'partial/dbconnect.php';
 if(isset($_POST['submit'])){
-        $batch_id= $_POST["batch_id"];
-        $component=$_POST["component"];
-        $workstation_from=$_POST["workstation_from"];
-        $time_deposited=$_POST["time_deposited"];
-        $sender=$_POST["sender"];
-        $workstation_to=$_POST["workstation_to"];
-        $time_picked=$_POST["time_picked"];
-        $receiver=$_POST["receiver"];
-          
-
-          $sql = "INSERT INTO wip(batch_id, component, workstation_from, time_deposited, sender, workstation_to, time_picked, receiver)
-           VALUES ('$batch_id', '$component', '$workstation_from', ' $time_deposited', '$sender', '$workstation_to', '$time_picked', '$receiver')";
+        $user_id= $_POST["user_id"];
+        $user_name=$_POST["user_name"];
+        $dob=$_POST["dob"];
+        $gender=$_POST["gender"];
+        $designation=$_POST["designation"];
+        $phone=$_POST["phone"];
+        $address=$_POST["address"];
+          $sql = "INSERT INTO `user` (user_id, user_name, dob, gender, designation, phone, address)
+           VALUES ('$user_id','$user_name','$dob','$gender','$designation','$phone','$address')";
           $result = mysqli_query($conn, $sql);
           if($result){
             
-           header("location: admin_wip.php");
+            header("location:admin_empmanage.php");
             exit;
             
           }
@@ -26,8 +23,6 @@ if(isset($_POST['submit'])){
            }
 }
 ?>
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -39,14 +34,13 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
-   <style>
-   .content {
-	border: 1px;
-	
-	margin-top: 30px;
-	margin-bottom: 60px;
-	margin-right: 0px;
-	margin-left: 240px;
+   <style>.content {
+  border: 1px;
+  
+  margin-top: 30px;
+  margin-bottom: 60px;
+  margin-right: 0px;
+  margin-left: 240px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -60,12 +54,12 @@ if(isset($_POST['submit'])){
 }
 
  .content .box {
-	  padding: 5px;
-	  width: 85%;
-	  
-	  
+    padding: 5px;
+    width: 85%;
+    
+    
 
-	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -109,9 +103,9 @@ input[type=text], select {
   width: 95%;
   padding: 5px 10px;
   margin-top: 10px;
-	margin-bottom: 10px;
-	margin-right: 0px;
-	margin-left: 10px;
+  margin-bottom: 10px;
+  margin-right: 0px;
+  margin-left: 10px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -161,7 +155,7 @@ input[type=submit]:hover {
 
     
 
-    <title>Add Item</title>
+    <title>Add user</title>
   </head>
   <body>
 
@@ -180,7 +174,7 @@ input[type=submit]:hover {
                 </li>
                     
                 <li>
-                    <a href="admin_products.php" >
+                    <a href="admin_products.php">
                         
                         <span class="item">Products</span>
                     </a>
@@ -192,19 +186,19 @@ input[type=submit]:hover {
                     </a>
                 </li>
                 <li>
-                    <a href="admin_rawmaterials.php" >
+                    <a href="admin_rawmaterials.php">
                         
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_wip.php" class="active">
+                    <a href="admin_wip.php">
                         
                         <span class="item">WIP Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php">
+                    <a href="admin_finishedg.php"  >
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
@@ -216,7 +210,7 @@ input[type=submit]:hover {
                     </a>
                 </li>
                 <li>
-                    <a href="admin_empmanage.php">
+                    <a href="admin_empmanage.php" class="active">
                         
                         <span class="item">Employee Management</span>
                     </a>
@@ -231,42 +225,50 @@ input[type=submit]:hover {
   </ul>
   
        </div>
-</div>
+</div> 
 
-      
+
+        
 <div class="content"> 
-<h2 class="heading">Add Item</h2> 
+<h2 class="heading"> Add User</h2>
 <div class="box">
-
 <div>
-  <form action="/project/add_wip.php" method="post">
-    <label>Batch ID</label>
-    <input type="text"  name="batch_id" placeholder="Batch ID">
+  <form action="/project/add_user.php" method="post">
+    <label>User ID</label>
+    <input type="text"  name="user_id" placeholder="User ID">
+    <br>
 
-    <label>Component</label>
-    <input type="text"  name="component" placeholder="Component">
+    <label>User Name</label>
+    <input type="text"  name="user_name" placeholder="User name">
+    <br>
 
-    <label>Workstation From</label>
-    <input type="text"  name="workstation_from" placeholder="Workstation From">
-    <label>Time(Deposited)</label>
-    <input type="time"  name="time_deposited" placeholder="Time(Deposited)">
-    <label>Sender</label>
-    <input type="text"  name="sender" placeholder="Sender Name">
-
-    <label>Workstation To</label>
-    <input type="text"  name="workstation_to" placeholder="Workstation To">
-    <label>Time(Picked Up)</label>
-    <input type="time"  name="time_picked" placeholder="Time(Picked Up)">
-    <label>Receiver</label>
-    <input type="text"  name="receiver" placeholder="Receiver Name">
-
+    <label>Date of Birth</label><br>
+    <input type="date"  name="dob" placeholder="DOB">
+    <br>
+    <label>Gender</label>
+    <br>
+    <input type="text"  name="gender" placeholder="Gender">
+    <br>
+    <label>Designation</label>
+    <br>
+    <input type="text"  name="designation" placeholder="designation">
+    <br>
+    <label>Phone Number</label>
+    <br>
+    <input type="text"  name="phone" placeholder="phone">
+    <br>
+    <label>Address</label>
+    <br>
+    <input type="text"  name="address" placeholder="Address">
+    <br>
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     
     
-    
+
   
-    
   </form>
+  
+  </div>
 </div>
 
 </div>

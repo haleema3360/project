@@ -257,23 +257,20 @@ input[type=submit]:hover {
     <br>
     <label>Status</label>
     <br>
-    <input type="text"  name="status" placeholder="Status">
+    <!-- <input type="text"  name="status" placeholder="Status"> -->
+
+    <select name="status" id="">
+                        <option value="" disabled hidden selected>Status</option>
+                        <option value="procurement">Procurement</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="warehousing">Warehousing</option>
+                        <option value="order fulfillment">Order fulfillment</option>
+                        <option value="transportation">Transportation</option>
+                    </select>
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     
     
-    <!-- <div class="dropdown"> -->
-      
-  <!-- <button class="btn btn-secondary dropdown-toggle" type="button" name="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Status
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Procurement</button>
-    <button class="dropdown-item" type="button">Manufacturing</button>
-    <button class="dropdown-item" type="button">Warehousing </button>
-    <button class="dropdown-item" type="button">Order Fulfillment </button>
-    <button class="dropdown-item" type="button">Transportation </button>
-  </div>
- -->
+  
     
   
     

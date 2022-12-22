@@ -17,9 +17,6 @@ if(isset($_POST['update'])){
           $result = mysqli_query($conn, $sql);
           if($result){
         
-            echo"Data insrted";
-            
-            
             header("location:admin_mro.php");
             exit;
             
