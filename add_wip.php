@@ -241,24 +241,40 @@ input[type=submit]:hover {
 <div>
   <form action="/project/add_wip.php" method="post">
     <label>Batch ID</label>
+    <br>
     <input type="text"  name="batch_id" placeholder="Batch ID">
+    <br>
 
     <label>Component</label>
+    <br>
     <input type="text"  name="component" placeholder="Component">
+    <br>
 
     <label>Workstation From</label>
+    <br>
     <input type="text"  name="workstation_from" placeholder="Workstation From">
+    <br>
     <label>Time(Deposited)</label>
+    <br>
     <input type="time"  name="time_deposited" placeholder="Time(Deposited)">
+    <br>
     <label>Sender</label>
+    <br>
     <input type="text"  name="sender" placeholder="Sender Name">
+    <br>
 
     <label>Workstation To</label>
+    <br>
     <input type="text"  name="workstation_to" placeholder="Workstation To">
+    <br>
     <label>Time(Picked Up)</label>
+    <br>
     <input type="time"  name="time_picked" placeholder="Time(Picked Up)">
+    <br>
     <label>Receiver</label>
+    <br>
     <input type="text"  name="receiver" placeholder="Receiver Name">
+    <br>
 
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     
