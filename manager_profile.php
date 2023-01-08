@@ -2,14 +2,14 @@
 session_start();
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-    header("location: login.php");
+    header("location: manager_login.php");
     exit;
 }
 ?>
-
 <?php
 include 'partial/dbconnect.php';
 ?>
+
 
 
 <!doctype html>
@@ -20,24 +20,23 @@ include 'partial/dbconnect.php';
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
    <style>.content {
-  border: 1px;
-  
-  margin-top: 40px;
-  margin-bottom: 60px;
-  margin-right: 0px;
-  margin-left: 250px;
+	border: 1px;
+	
+	margin-top: 60px;
+	margin-bottom: 50px;
+	margin-right: 0px;
+	margin-left: 250px;
     word-wrap: break-word;
     background-color:white;
 }
-.but {
-color: white;
-}
-
-
 * {
     list-style: none;
     text-decoration: none;
@@ -46,18 +45,21 @@ color: white;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-   
 
  .content .box {
-    padding: 5px;
-    width: 85%;
-    
-    
+	  padding: 10px;
+	  width: 85%;
+  
+	  
+	  
 
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
+  }
+  h2{
+    margin-left:100px;
   }
  .content .box.user-info {
   font-family: Arial, Helvetica, sans-serif;
@@ -73,8 +75,8 @@ color: white;
 
 
 .content .box.user-info th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 18px;
   text-align: left;
  
 
@@ -92,15 +94,19 @@ font-size: 30px;
 
 .products td, .products th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 3px;
 }
+.but {
+color: white;
+}
+
 
 
 
 .products tr:hover {background-color: #ddd;}
 
 .products th {
-  padding-top: 12px;
+  padding-top: 15px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #0D4C92;
@@ -109,75 +115,84 @@ font-size: 30px;
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #0D4C92;
-    margin-left: 530px;
-    margin-bottom: 7px;
+    margin-left: 900px;
+    margin-bottom: 30px;
     
+	
 }
+.btn-secondary{
+  margin-left: 490px;
+}
+.namee{
+  margin-left: 0px;
+}
+.pencil{
+  margin-left: 860px;
+    margin-bottom: 7px;
+    position: absolute;
+}
+
 
 </style>
 
-    
+// <?php echo $_SESSION['username']?> 
 
-    <title>Raw Materials</title>
+    <title>Manager-Profile</title>
   </head>
   <body>
 
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-            
+    
             <h2><?php echo $_SESSION['username']?></h2>
-            <p>Admin</p>
+            <p>Manager</p>
             </div>
             <ul>
                 <li>
-                    <a href="admin_profile.php">
+                    <a href="manager_profile.php" class="active">
                         <span class="item">Profile</span>
                     </a>
                 </li>
                     
                 <li>
-                    <a href="admin_products.php" >
+                    <a href="manager_products.php">
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php">
+                    <a href="manager_porders.php">
                         
                         <span class="item">Product Orders</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="active">
+                    <a href="manager_rawmaterials.php">
                         
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
+                
                 <li>
-                    <a href="admin_wip.php">
+                    <a href="manager_wip.php">
                         
                         <span class="item">WIP Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php">
+                    <a href="manager_finishedg.php">
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_mro.php">
+                    <a href="manager_mro.php">
                         
                         <span class="item">MRO Inventory</span>
                     </a>
                 </li>
-                <li>
-                    <a href="admin_empmanage.php">
-                        
-                        <span class="item">Employee Management</span>
-                    </a>
-                </li>
+                
                 <li>
                     
                         <a href="/project/logout.php"><span class="item">Signout</span></a>
@@ -189,62 +204,93 @@ font-size: 30px;
   
        </div>
 </div>
+   
 
-        
-<div class="content">
-<div class="box">
-<table class="user-info">
-        
-  <tr class="heading">
- <td> <h3><u>Raw Materials</u></h3></td>
- <td><button type="button" class="btn btn-primary"> <a class="but" href="add_rawmaterials.php">Add Raw Material</a></button></td>
-    </tr>
   
-  <table class="products">
-    <thead>
-  <tr>
-    <th>SKU ID</th>
-    <th>Material</th>
-    <th>Type</th>
-    <th>Quantity</th>
-    <th>Units</th>
-    <th>Received Date</th>
-    <th>Edit</th>
-  </tr>
-</thead>
-<tbody>
-<?php
-  $sql = "SELECT * FROM `raw_materials`";
-  $result = mysqli_query($conn, $sql);
-    if ($result) {
-      while($row = mysqli_fetch_assoc($result)) {
-       $sku_id=$row['sku_id'];
-        $material=$row['material'];
-        $type=$row['type'];
-          $quantity=$row['quantity']; 
-          $units=$row['units'];
-          $received_date=$row['received_date'];
-          echo '<tr>
-              <td>'.$row["sku_id"].'</td>
-              <td>'.$row["material"].'</td>
-              <td>'.$row["type"].'</td>
-               <td>'.$row["quantity"].'</td>
-               <td>'.$row["units"].'</td>
-               <td>'.$row["received_date"].'</td>
-               <td>
-               <button type="button" class="btn btn-link"> <a href="edit_rm.php?editid='.$sku_id.'">  <span class="bi bi-pencil-fill"></span></a></button>
-               <button type="button" class="btn btn-link"><a href="delete_rm.php?deleteid='.$sku_id.'"> <span class="bi bi-trash"></span></button>
-</td>
+<div class="content">
+<h2><u>Profile</u></h2>
 
-             </tr>';
+<div class="box">
+
+<table class="user-info">
+ <tr class="heading">
+ 
+ 
+ 
+  	</tr>
+    <tbody>
+    <?php
+  $sql = "SELECT * FROM `profile`";
+  $result = mysqli_query($conn, $sql);
+  ?>
+    <?php
+    if ($result) {
+      
+        while($row = mysqli_fetch_assoc($result)) {
+          $name=$row['name'];
+          $user_id=$row['user_id'];
+          $username=$row['username'];
+           
+           $dob=$row['dob'];
+             $gender=$row['gender']; 
+             $designation=$row['designation'];
+             $phone=$row['phone']; 
+             $address=$row['address']; 
+             echo '<tr class="pencil">
+
+             <td><button type="button" class="btn btn-link">
+                <a href="edit_manager_info.php?editid='.$user_id.'">  <span class="bi bi-pencil-fill"></span></a></button></td>
+             </tr>
+             <tr>
+                <td>Name</td>
+                <td>'.$row["name"].'</td>
+                </tr>
+                <tr>
+                <td>User ID</td>
+                 <td>'.$row["user_id"].'</td>
+                 </tr>
+                 <tr>
+                 <td>User Name</td>
+                 <td>'.$row["username"].'</td>
+                 </tr>
+                 <tr>
+                 <td>Date of Birth</td>
+                 <td>'.$row["dob"].'</td>
+                 </tr>
+                 <tr>
+                 <td>Gender</td>
+                  <td>'.$row["gender"].'</td>
+                  </tr>
+                  <tr>
+                  <td>Designation</td>
+                  <td>'.$row["designation"].'</td>
+                  </tr>
+                  <tr>
+                  <td>Phone</td>
+                  <td>'.$row["phone"].'</td>
+                  </tr>
+                  <tr>
+                  <td>Address</td>
+                  <td>'.$row["address"].'</td>
+                  </tr>';
   }
 }
 ?>
-
+      
 </tbody>
+  
+
+  
 </table>
-</div>      
+        </div>
+        
 </div>
 </div>
+
+
+  
+
+    
+
 </body>
 </html>

@@ -1,30 +1,16 @@
 <?php
-include 'partial/dbconnect.php';
-if(isset($_POST['submit'])){
-        $part_no= $_POST["part_no"];
-        $part_name=$_POST["part_name"];
-        $type=$_POST["type"];
-        $machine=$_POST["machine"];
-        $department=$_POST["department"];
-        $sql = "INSERT INTO mro (part_no, part_name, type , machine, department) 
-          VALUES ('$part_no', '$part_name', '$type','$machine', '$department')";
-          $result = mysqli_query($conn, $sql);
-          if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data inserted";
-            
-            
-            header("location: admin_mro.php");
-            exit;
-            
-          }
-          else{
-          die(mysqli_error($conn));
-            
-           }
+session_start();
+
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: manager_login.php");
+    exit;
 }
 ?>
+<?php
+include 'partial/dbconnect.php';
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -39,10 +25,10 @@ if(isset($_POST['submit'])){
    <style>.content {
   border: 1px;
   
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 60px;
   margin-right: 0px;
-  margin-left: 240px;
+  margin-left: 250px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -101,122 +87,89 @@ font-size: 30px;
   border: 1px solid #ddd;
   padding: 8px;
 }
-input[type=text], select {
-  width: 95%;
-  padding: 5px 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 0px;
-  margin-left: 10px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-  width: 100%;
-  background-color: #0D4C92;
-  color: white;
-  padding: 14px 20px;
-  margin: 20px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #0D4C92;
-}
-.heading{
-  margin-left: 90px;
-  color: black;
-  margin-bottom: 20px;
-
-
-}
 
 
 
-
-
-.products tr:hover {background-color: #0D4C92;}
+.products tr:hover {background-color: #ddd;}
 
 .products th {
-  padding-top: 10px;
-  padding-bottom: 5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   text-align: left;
   background-color: #0D4C92;
   color: white;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #0D4C92;
+    
+  background-color: #0D4C92;
+  margin-left: 560px;
+    margin-bottom: 7px;
+  
 }
+.but {
+color: white;
+}
+
 </style>
 
     
 
-    <title>Products</title>
+    <title>Manager-MRO</title>
   </head>
   <body>
 
   <div class="wrapper">
         <div class="sidebar">
             <div class="profile">
-            
-            <h2></h2>
-            <p>Admin</p>
+           
+            <h2><?php echo $_SESSION['username']?></h2>
+            <p>Manager</p>
             </div>
             <ul>
                 <li>
-                    <a href="admin_profile.php">
+                    <a href="manager_profile.php">
                         <span class="item">Profile</span>
                     </a>
                 </li>
                     
                 <li>
-                    <a href="admin_products.php">
+                    <a href="manager_products.php" >
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php">
+                    <a href="manager_porders.php">
                         
                         <span class="item">Product Orders</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_rawmaterials.php">
+                    <a href="manager_rawmaterials.php">
                         
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_wip.php">
+                    <a href="manager_wip.php" >
                         
                         <span class="item">WIP Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php"  >
+                    <a href="manager_finishedg.php" >
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_mro.php" class="active">
+                    <a href="manager_mro.php" class="active">
                         
                         <span class="item">MRO Inventory</span>
                     </a>
                 </li>
-                <li>
-                    <a href="admin_empmanage.php">
-                        
-                        <span class="item">Employee Management</span>
-                    </a>
-                </li>
+                
                 <li>
                     
                         <a href="/project/logout.php"><span class="item">Signout</span></a>
@@ -227,44 +180,79 @@ input[type=submit]:hover {
   </ul>
   
        </div>
-</div> 
-
+</div>
 
         
-<div class="content"> 
-<h2 class="heading"> Add Item</h2>
+<div class="content">
 <div class="box">
-<div>
-  <form action="/project/add_mro.php" method="post">
-    <label>Part No</label>
-    <input type="text"  name="part_no" placeholder="part no">
-    <br>
-
-    <label>Part Name</label>
-    <input type="text"  name="part_name" placeholder="part name">
-    <br>
-
-    <label>Type</label><br>
-    <select name="type" id="">
-                        <option value="" disabled hidden selected>Type</option>
-                        <option value="spare">Spare</option>
-                        <option value="maintaenance">Maintenance</option>
-</select>
-    <br>
-    <label>Machine</label>
-    <br>
-    <input type="text"  name="machine" placeholder="machine">
-    <br>
-    <label>Department</label>
-    <br>
-    <input type="text"  name="department" placeholder="department">
-    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+<table class="user-info">
+        
+  <tr class="heading">
+ <td> <h3><u>MRO Inventory</u></h3></td>
+ <td><button type="button" class="btn btn-primary"> <a class="but" href="m_add_mro.php"> Add Item</a></button> </td>
+    </tr>
   
-  </form>
-  </div>
-</div>
+      <table class="products">
+  <thead>
+  <tr>
+    <th>Part No</th>
+    <th>Part Name</th>
+    <th>Type</th>
+    <th>Machine</th>
+    <th>Department</th>
+    <th>Edit</th>
+
+    
+    
+  </tr>
+</thead>
+<tbody>
+
+</tbody>
+<?php
+  $sql = "SELECT * FROM `mro`";
+  $result = mysqli_query($conn, $sql);
+    if ($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+       $part_no=$row['part_no'];
+       $part_name=$row['part_name'];
+       $type=$row['type'];
+       $machine=$row['machine']; 
+       $department=$row['department'];
+       
+       
+          echo '<tr>
+              <td>'.$row["part_no"].'</td>
+              <td>'.$row["part_name"].'</td>
+              <td>'.$row["type"].'</td>
+               <td>'.$row["machine"].'</td>
+               <td>'.$row["department"].'</td>
+               
+               
+               <td>
+               <button type="button" class="btn btn-link"> <a href="edit_manager_mro.php?editid='.$part_no.'">  <span class="bi bi-pencil-fill"></span></a></button>
+               <button type="button" class="btn btn-link"><a href="delete_manager_mro.php?deleteid='.$part_no.'"> <span class="bi bi-trash"></span></button>
+</td>
+              
+         
+             </tr>';
+  }
+}
+?>
+</tbody>
+  
+</table>
+
 
 </div>
+        
 </div>
-</body>
+</div>
+
+
+  
+
+    
+
+  </body>
 </html>

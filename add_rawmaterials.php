@@ -245,16 +245,33 @@ input[type=submit]:hover {
     <input type="text"  name="material" placeholder="Material">
 
     <label>Type</label>
-    <input type="text"  name="type" placeholder="Type">
+    <select name="type" id="">
+                        <option value="" disabled hidden selected>Type</option>
+                        <option value="direct">Direct</option>
+                        <option value="indirect">Indirect</option>
+</select>
 
     <label>Quantity</label>
     <input type="text"  name="quantity" placeholder="Quantity">
 
     <br>
     <label>Units</label>
-    <input type="text"  name="units" placeholder="Units">
+    
+    <br>
+    <select name="unit" id="">
+                        <option value="" disabled hidden selected>Unit</option>
+                        <option value="m²">m²</option>
+                        <option value="pcs">pcs</option>
+                        <option value="kg">Kg</option>
+                        <option value="m">m</option>
+                        <option value="l">l</option>
+                        </select>
+    <br>
     <label>Received Date</label>
+    <br>
     <input type="date"  name="received_date" placeholder="date">
+    <br>
+    <br>
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 
   

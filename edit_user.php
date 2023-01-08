@@ -265,7 +265,7 @@ input[type=submit]:hover {
     <input type="text"  name="address" placeholder="Address">
     <br>
     <button type="submit" class="btn btn-primary" name="update">Update</button>
-    <!-- <button type="danger" class="btn btn-primary" name="cancel" a href="admin_empmanage.php">Cancel</button> -->
+   
 
   
   </form>

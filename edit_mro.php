@@ -1,30 +1,14 @@
 <?php
 include 'partial/dbconnect.php';
-$sku_id=$_GET['editid']; 
+if(isset($_GET['editid'])){
+$part_no=$_GET['editid'];
+$sql="SELECT * FROM `mro` WHERE part_no = '$part_no'";
+$result=$conn->query($sql);
 
-if(isset($_POST['update'])){
-        $part_no= $_POST["part_no"];
-        $part_name=$_POST["part_name"];
-        $type=$_POST["type"];
-        $machine=$_POST["machine"];
-        $department=$_POST["department"];
-
-
-       
-        $sql = "UPDATE `mro` SET `part_no`='$part_no',`part_name`='$part_name',
-`type`='$type',`machine`='$machine',`department`='$department' WHERE part_no='$part_no'";
-          
-          $result = mysqli_query($conn, $sql);
-          if($result){
-        
-            header("location:admin_mro.php");
-            exit;
-            
-          }
-          else{
-          die(mysqli_error($conn));
-            
-           }
+if($result->num_rows!=1){
+  die('id not found/invalid');
+}
+$data=$result->fetch_assoc();
 }
 ?>
 <!doctype html>
@@ -237,25 +221,25 @@ input[type=submit]:hover {
 <h2 class="heading"> Edit Item</h2>
 <div class="box">
 <div>
-  <form action="/project/edit_mro.php" method="post">
+  <form action="modify_mro.php?editid=<?= $part_no ?>" method="post">
     <label>Part No</label>
-    <input type="text"  name="part_no" placeholder="part no">
+    <input type="text"  name="part_no" placeholder="part no" value="<?= $data['part_no']?>">
     <br>
 
     <label>Part Name</label>
-    <input type="text"  name="part_name" placeholder="part name">
+    <input type="text"  name="part_name" placeholder="part name" value="<?= $data['part_name']?>">
     <br>
 
     <label>Type</label><br>
-    <input type="text"  name="type" placeholder="type">
+    <input type="text"  name="type" placeholder="type" value="<?= $data['type']?>">
     <br>
     <label>Machine</label>
     <br>
-    <input type="text"  name="machine" placeholder="machine">
+    <input type="text"  name="machine" placeholder="machine" value="<?= $data['machine']?>">
     <br>
     <label>Department</label>
     <br>
-    <input type="text"  name="department" placeholder="department">
+    <input type="text"  name="department" placeholder="department" value="<?= $data['department']?>">
     <button type="submit" class="btn btn-primary" name="update">Update</button>
   
   </form>

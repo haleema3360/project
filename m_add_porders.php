@@ -1,28 +1,36 @@
 <?php
 include 'partial/dbconnect.php';
 if(isset($_POST['submit'])){
-        $part_no= $_POST["part_no"];
-        $part_name=$_POST["part_name"];
-        $type=$_POST["type"];
-        $machine=$_POST["machine"];
-        $department=$_POST["department"];
-        $sql = "INSERT INTO mro (part_no, part_name, type , machine, department) 
-          VALUES ('$part_no', '$part_name', '$type','$machine', '$department')";
-          $result = mysqli_query($conn, $sql);
-          if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data inserted";
-            
-            
-            header("location: admin_mro.php");
-            exit;
-            
+        $count=0;
+        $c=0;
+        $product_id= $_POST["product_id"];
+        $product_name=$_POST["product_name"];
+        $quantity=$_POST["quantity"];
+        $unit=$_POST["unit"];
+        $status=$_POST["status"];
+          
+          $sql =mysqli_query($conn,"INSERT INTO `porders` (product_id, product_name, quantity, unit, status) VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')");
+
+          $res=mysqli_query($conn,"SELECT * FROM `products` WHERE product_id='$_POST[product_id]' && product_name='$_POST[product_name]' && unit='$_POST[unit]' ");
+          $count=mysqli_num_rows($res);
+          if($count==0){
+            mysqli_query($conn,"INSERT INTO `products` VALUES ('$_POST[product_id]','$_POST[product_name]', '$_POST[quantity]','$_POST[unit]','0')") or die(mysqli_error($link));
           }
           else{
-          die(mysqli_error($conn));
-            
-           }
+            mysqli_query($conn,"UPDATE `products` SET quantity=quantity+$_POST[quantity] WHERE product_id='$_POST[product_id]' && product_name='$_POST[product_name]' && unit='$_POST[unit]' ") or die(mysqli_error($link));
+          }
+          $ans=mysqli_query($conn,"SELECT * FROM `porders` WHERE product_id='$_POST[product_id]' && product_name='$_POST[product_name]' && unit='$_POST[unit]' ");
+          $c=mysqli_num_rows($ans);
+          if($c!=0){
+            echo"Data inserted";
+            header("location: manager_porders.php");
+            exit;
+          }
+          else{
+            die(mysqli_error($conn));
+              
+            }
+          
 }
 ?>
 <!doctype html>
@@ -166,7 +174,7 @@ input[type=submit]:hover {
             <div class="profile">
             
             <h2></h2>
-            <p>Admin</p>
+            <p>Manager</p>
             </div>
             <ul>
                 <li>
@@ -176,13 +184,13 @@ input[type=submit]:hover {
                 </li>
                     
                 <li>
-                    <a href="admin_products.php">
+                    <a href="admin_products.php" >
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php">
+                    <a href="admin_porders.php" class="active">
                         
                         <span class="item">Product Orders</span>
                     </a>
@@ -200,13 +208,13 @@ input[type=submit]:hover {
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php"  >
+                    <a href="admin_finishedg.php">
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_mro.php" class="active">
+                    <a href="admin_mro.php">
                         
                         <span class="item">MRO Inventory</span>
                     </a>
@@ -219,7 +227,7 @@ input[type=submit]:hover {
                 </li>
                 <li>
                     
-                        <a href="/project/logout.php"><span class="item">Signout</span></a>
+                        <a href="project/logout.php"><span class="item">Signout</span></a>
                         
                     
                 </li>
@@ -232,33 +240,29 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading"> Add Item</h2>
+<h2 class="heading"> Add Product Order</h2>
 <div class="box">
 <div>
-  <form action="/project/add_mro.php" method="post">
-    <label>Part No</label>
-    <input type="text"  name="part_no" placeholder="part no">
+  <form action="m_add_porders.php" method="post">
+    <label>Product ID</label>
+    <input type="text"  name="product_id" placeholder="Product ID">
     <br>
 
-    <label>Part Name</label>
-    <input type="text"  name="part_name" placeholder="part name">
+    <label>Product Name</label>
+    <input type="text"  name="product_name" placeholder="Product name">
     <br>
 
-    <label>Type</label><br>
-    <select name="type" id="">
-                        <option value="" disabled hidden selected>Type</option>
-                        <option value="spare">Spare</option>
-                        <option value="maintaenance">Maintenance</option>
-</select>
+    <label>Quantity</label>
+    <input type="text"  name="quantity" placeholder="Quantity">
     <br>
-    <label>Machine</label>
+    <label>Unit</label>
     <br>
-    <input type="text"  name="machine" placeholder="machine">
+    <input type="text"  name="unit" placeholder="Unit">
     <br>
-    <label>Department</label>
+    <label>Status</label>
     <br>
-    <input type="text"  name="department" placeholder="department">
-    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    <input type="text"  name="status" placeholder="Status">
+    <button type="submit" class="btn btn-primary" name="submit" id="success">Submit</button>
   
   </form>
   </div>

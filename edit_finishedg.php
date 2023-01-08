@@ -1,34 +1,14 @@
 <?php
 include 'partial/dbconnect.php';
-$product_id=$_GET['editid']; 
+if(isset($_GET['editid'])){
+$product_id=$_GET['editid'];
+$sql="SELECT * FROM `finished_goods` WHERE product_id = '$product_id'";
+$result=$conn->query($sql);
 
-if(isset($_POST['update'])){
-        $product_id= $_POST["product_id"];
-        $product=$_POST["product"];
-        $division=$_POST["division"];
-        $type=$_POST["type"];
-        $quantity=$_POST["quantity"];
-        $client=$_POST["client"];
-
-          
-
-          $sql = "UPDATE `finished_goods` SET `product_id`='$product_id',`product`='$product',
-          `division`='$division',`type`='$type',`quantity`='$quantity',`client`='$client' WHERE product_id='$product_id'";
-          $result = mysqli_query($conn, $sql);
-          if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data inserted";
-            
-            
-            header("location: admin_finishedg.php");
-            exit;
-            
-          }
-          else{
-          die(mysqli_error($conn));
-            
-           }
+if($result->num_rows!=1){
+  die('id not found/invalid');
+}
+$data=$result->fetch_assoc();
 }
 ?>
 <!doctype html>
@@ -238,33 +218,33 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading"> Add Item</h2>
+<h2 class="heading"> Edit Item</h2>
 <div class="box">
 <div>
-  <form action="/project/edit_finishedg.php" method="post">
+  <form action="modify_finishedg.php?editid=<?= $product_id?>" method="post">
     <label>Product ID</label>
-    <input type="text"  name="product_id" placeholder="Product ID">
+    <input type="text"  name="product_id" placeholder="Product ID" value="<?= $data['product_id']?>">
     <br>
 
     <label>Product</label>
-    <input type="text"  name="product" placeholder="product">
+    <input type="text"  name="product" placeholder="product" value="<?= $data['product']?>">
     <br>
 
     <label>Division</label>
-    <input type="text"  name="division" placeholder="division">
+    <input type="text"  name="division" placeholder="division" value="<?= $data['division']?>">
     <br>
     <label>Type</label>
     <br>
-    <input type="text"  name="type" placeholder="type">
+    <input type="text"  name="type" placeholder="type" value="<?= $data['type']?>">
     <br>
     <label>Quantity</label>
     <br>
-    <input type="text"  name="quantity" placeholder="quantity">
+    <input type="text"  name="quantity" placeholder="quantity" value="<?= $data['quantity']?>">
     <br>
     
     <label>Client</label>
     <br>
-    <input type="text"  name="client" placeholder="client">
+    <input type="text"  name="client" placeholder="client" value="<?= $data['client']?>">
     <button type="submit" class="btn btn-primary" name="update">Update</button>
   
   </form>

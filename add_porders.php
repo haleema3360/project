@@ -1,26 +1,36 @@
 <?php
 include 'partial/dbconnect.php';
 if(isset($_POST['submit'])){
+        $count=0;
+        $c=0;
         $product_id= $_POST["product_id"];
         $product_name=$_POST["product_name"];
         $quantity=$_POST["quantity"];
         $unit=$_POST["unit"];
         $status=$_POST["status"];
           
+          $sql =mysqli_query($conn,"INSERT INTO `porders` (product_id, product_name, quantity, unit, status) VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')");
 
-          $sql = "INSERT INTO `porders` (product_id, product_name, quantity, unit, status) 
-          VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
-          $result = mysqli_query($conn, $sql);
-          if($result){
-            
-            header("location: admin_porders.php");
-            exit;
-            
+          $res=mysqli_query($conn,"SELECT * FROM `products` WHERE product_id='$_POST[product_id]' && product_name='$_POST[product_name]' && unit='$_POST[unit]' ");
+          $count=mysqli_num_rows($res);
+          if($count==0){
+            mysqli_query($conn,"INSERT INTO `products` VALUES ('$_POST[product_id]','$_POST[product_name]', '$_POST[quantity]','$_POST[unit]','0')") or die(mysqli_error($link));
           }
           else{
-          die(mysqli_error($conn));
-            
-           }
+            mysqli_query($conn,"UPDATE `products` SET quantity=quantity+$_POST[quantity] WHERE product_id='$_POST[product_id]' && product_name='$_POST[product_name]' && unit='$_POST[unit]' ") or die(mysqli_error($link));
+          }
+          $ans=mysqli_query($conn,"SELECT * FROM `porders` WHERE product_id='$_POST[product_id]' && product_name='$_POST[product_name]' && unit='$_POST[unit]' ");
+          $c=mysqli_num_rows($ans);
+          if($c!=0){
+            echo"Data inserted";
+            header("location: admin_porders.php");
+            exit;
+          }
+          else{
+            die(mysqli_error($conn));
+              
+            }
+          
 }
 ?>
 <!doctype html>
@@ -217,7 +227,7 @@ input[type=submit]:hover {
                 </li>
                 <li>
                     
-                        <a href="/project/logout.php"><span class="item">Signout</span></a>
+                        <a href="project/logout.php"><span class="item">Signout</span></a>
                         
                     
                 </li>
@@ -233,7 +243,7 @@ input[type=submit]:hover {
 <h2 class="heading"> Add Product Order</h2>
 <div class="box">
 <div>
-  <form action="/project/add_porders.php" method="post">
+  <form action="add_porders.php" method="post">
     <label>Product ID</label>
     <input type="text"  name="product_id" placeholder="Product ID">
     <br>
@@ -247,11 +257,20 @@ input[type=submit]:hover {
     <br>
     <label>Unit</label>
     <br>
-    <input type="text"  name="unit" placeholder="Unit">
+    <select name="unit" id="">
+                        <option value="" disabled hidden selected>Unit</option>
+                        <option value="m²">m²</option>
+                        <option value="pcs">pcs</option>
+                        <option value="kg">Kg</option>
+                        <option value="m">m</option>
+                        <option value="l">l</option>
+                        </select>
+    <br>
     <br>
     <label>Status</label>
     <br>
-    <select name="status" id="">
+    <label>Status</label>
+     <select name="status" id="">
                         <option value="" disabled hidden selected>Status</option>
                         <option value="procurement">Procurement</option>
                         <option value="manufacturing">Manufacturing</option>
@@ -259,7 +278,7 @@ input[type=submit]:hover {
                         <option value="order fulfillment">Order fulfillment</option>
                         <option value="transportation">Transportation</option>
                     </select>
-    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    <button type="submit" class="btn btn-primary" name="submit" id="success">Submit</button>
   
   </form>
   </div>

@@ -10,12 +10,11 @@ if(isset($_POST['submit'])){
           VALUES ('$part_no', '$part_name', '$type','$machine', '$department')";
           $result = mysqli_query($conn, $sql);
           if($result){
-            // header("location: admin_products.php");
-            // 
+            
             echo"Data inserted";
             
             
-            header("location: admin_mro.php");
+            header("location: manager_mro.php");
             exit;
             
           }
@@ -157,7 +156,7 @@ input[type=submit]:hover {
 
     
 
-    <title>Products</title>
+    <title>Add Item</title>
   </head>
   <body>
 
@@ -166,57 +165,52 @@ input[type=submit]:hover {
             <div class="profile">
             
             <h2></h2>
-            <p>Admin</p>
+            <p>Manager</p>
             </div>
             <ul>
                 <li>
-                    <a href="admin_profile.php">
+                    <a href="manager_profile.php">
                         <span class="item">Profile</span>
                     </a>
                 </li>
                     
                 <li>
-                    <a href="admin_products.php">
+                    <a href="manager_products.php">
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php">
+                    <a href="manager_porders.php">
                         
                         <span class="item">Product Orders</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_rawmaterials.php">
+                    <a href="manager_rawmaterials.php">
                         
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_wip.php">
+                    <a href="manager_wip.php">
                         
                         <span class="item">WIP Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php"  >
+                    <a href="manager_finishedg.php"  >
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_mro.php" class="active">
+                    <a href="manager_mro.php" class="active">
                         
                         <span class="item">MRO Inventory</span>
                     </a>
                 </li>
-                <li>
-                    <a href="admin_empmanage.php">
-                        
-                        <span class="item">Employee Management</span>
-                    </a>
-                </li>
+                
                 <li>
                     
                         <a href="/project/logout.php"><span class="item">Signout</span></a>
@@ -235,7 +229,7 @@ input[type=submit]:hover {
 <h2 class="heading"> Add Item</h2>
 <div class="box">
 <div>
-  <form action="/project/add_mro.php" method="post">
+  <form action="/project/m_add_mro.php" method="post">
     <label>Part No</label>
     <input type="text"  name="part_no" placeholder="part no">
     <br>
@@ -245,11 +239,7 @@ input[type=submit]:hover {
     <br>
 
     <label>Type</label><br>
-    <select name="type" id="">
-                        <option value="" disabled hidden selected>Type</option>
-                        <option value="spare">Spare</option>
-                        <option value="maintaenance">Maintenance</option>
-</select>
+    <input type="text"  name="type" placeholder="type">
     <br>
     <label>Machine</label>
     <br>

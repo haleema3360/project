@@ -1,32 +1,14 @@
 <?php
 include 'partial/dbconnect.php';
-$product_id=$_GET['editid']; 
+if(isset($_GET['editid'])){
+$product_id=$_GET['editid'];
+$sql="SELECT * FROM `porders` WHERE product_id = '$product_id'";
+$result=$conn->query($sql);
 
-if(isset($_POST['update'])){
-        $product_id= $_POST["product_id"];
-        $product_name=$_POST["product_name"];
-        $quantity=$_POST["quantity"];
-        $unit=$_POST["unit"];
-        $status=$_POST["status"];
-          
-
-        $sql = "UPDATE `porders` SET product_id='$product_id', product_name='$product_name',quantity='$quantity',unit='$unit',status='$status' WHERE product_id='$product_id'";
-          
-        $result = mysqli_query($conn, $sql);
-          if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data insrted";
-            
-            
-            header("location: admin_porders.php");
-            exit;
-            
-          }
-          else{
-          die(mysqli_error($conn));
-            
-           }
+if($result->num_rows!=1){
+  die('id not found/invalid');
+}
+$data=$result->fetch_assoc();
 }
 ?>
 
@@ -240,27 +222,27 @@ input[type=submit]:hover {
 <h2 class="heading">Edit Product Info</h2>
 <div class="box">
 <div>
-  <form action="/project/edit_porders.php" method="post">
+  <form action="modify_po.php?editid=<?= $product_id?>" method="post">
     
    <label>Product ID</label>
-    <input type="text"  name="product_id" placeholder="Product ID">
+    <input type="text"  name="product_id" placeholder="Product ID" value="<?= $data['product_id']?>">
     <br> 
     
 
     <label>Product Name</label>
-    <input type="text"  name="product_name" placeholder="Product name">
+    <input type="text"  name="product_name" placeholder="Product name" value="<?= $data['product_name']?>">
     <br>
 
     <label>Quantity</label>
-    <input type="text"  name="quantity" placeholder="Quantity">
+    <input type="text"  name="quantity" placeholder="Quantity" value="<?= $data['quantity']?>">
     <br>
     <label>Unit</label>
     <br>
-    <input type="text"  name="unit" placeholder="Unit">
+    <input type="text"  name="unit" placeholder="Unit" value="<?= $data['unit']?>">
     <br>
     <label>Status</label>
     <br>
-    <input type="text"  name="status" placeholder="Status">
+    <input type="text"  name="status" placeholder="Status" value="<?= $data['status']?>">
     <button type="submit" class="btn btn-primary" name="update">Update</button>
   
   </form>

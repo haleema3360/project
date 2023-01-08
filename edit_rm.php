@@ -1,33 +1,14 @@
 <?php
 include 'partial/dbconnect.php';
-$sku_id=$_GET['editid']; 
+if(isset($_GET['editid'])){
+$sku_id=$_GET['editid'];
+$sql="SELECT * FROM `raw_materials` WHERE sku_id='$sku_id'";
+$result=$conn->query($sql);
 
-if(isset($_POST['update'])){
-        $sku_id= $_POST["sku_id"];
-        $material=$_POST["material"];
-        $type=$_POST["type"];
-        $quantity=$_POST["quantity"];
-        $units=$_POST["units"];
-        $received_date=$_POST["received_date"];
-          
-
-        $sql = "UPDATE `raw_materials` SET sku_id='$sku_id',material='$material',type='$type',quantity='$quantity',units='$units',received_date='$received_date' WHERE sku_id='$sku_id'";
-          
-        $result = mysqli_query($conn, $sql);
-          if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data insrted";
-            
-            
-            header("location: admin_rawmaterials.php");
-            exit;
-            
-          }
-          else{
-          die(mysqli_error($conn));
-            
-           }
+if($result->num_rows!=1){
+  die('id not found/invalid');
+}
+$data=$result->fetch_assoc();
 }
 ?>
 
@@ -238,28 +219,28 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading">Edit Raw Materials Info</h2>
+<h2 class="heading">Edit Raw Materials</h2>
 <div class="box">
 <div>
-  <form action="edit_rm.php" method="post">
+  <form action="modify_rm.php?editid=<?= $sku_id?>" method="post">
     <label>SKU ID</label>
-    <input type="text"  name="sku_id" placeholder="sku_id">
+    <input type="text"  name="sku_id" placeholder="sku_id" value="<?= $data['sku_id']?>">
     <br> 
 
     <label>Material</label>
-    <input type="text"  name="material" placeholder="Material">
+    <input type="text"  name="material" placeholder="Material" value="<?= $data['material']?>">
     <br>
     <label>Type</label><br>
-    <input type="text"  name="type" placeholder="Type">
+    <input type="text"  name="type" placeholder="Type" value="<?= $data['type']?>">
 
     <label>Quantity</label>
-    <input type="text"  name="quantity" placeholder="Quantity">
+    <input type="text"  name="quantity" placeholder="Quantity" value="<?= $data['quantity']?>">
 
     <br>
     <label>Units</label><br>
-    <input type="text"  name="units" placeholder="Units">
+    <input type="text"  name="units" placeholder="Units" value="<?= $data['units']?>">
     <label>Received Date</label>
-    <input type="date"  name="recieved_date" placeholder="date"><br>
+    <input type="date"  name="received_date" placeholder="date" value="<?= $data['received_date']?>"><br>
     <button type="submit" class="btn btn-primary" name="update">Update</button>
   
   </form>

@@ -33,19 +33,28 @@ if(!$loggedin){
   <ul class="navbar-nav mr-auto">
     
   <div class="dropdown">
+  
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Login
   </a>
 
   <ul class="dropdown-menu" style="">
     <li><a class="dropdown-item" href="/project/login.php">Admin</a></li>
-    <li><a class="dropdown-item" href="">Manager</a></li>
+    <li><a class="dropdown-item" href="/project/manager_login.php">Manager</a></li>
     <li><a class="dropdown-item" href="">Worker</a></li>
   </ul>
   </div>
-    <li class="nav-item">
-      <a class="nav-link" href="/project/signup.php">Signup</a>
-    </li>';}
+  &nbsp;&nbsp;&nbsp;
+    <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sign Up
+  </a>
+
+  <ul class="dropdown-menu" style="">
+    <li><a class="dropdown-item" href="/project/signup.php">Admin</a></li>
+    <li><a class="dropdown-item" href="/project/signup_manager.php">Manager</a></li>
+    </ul>
+  </div>';}
     if($loggedin){
       echo '
       <ul class="navbar-nav mr-auto">
@@ -61,4 +70,3 @@ if(!$loggedin){
 
 </body>
 </html>
-

@@ -204,7 +204,6 @@ color: white;
     <th>Product Name</th>
     <th>Quantity</th>
     <th>Unit</th>
-    <th>Product Status</th>
     <th>Action</th>
   </tr>
   </thead>
@@ -218,13 +217,13 @@ color: white;
         $product_name=$row['product_name'];
         $quantity=$row['quantity'];
           $unit=$row['unit']; 
-          $status=$row['status'];
+          
           echo '<tr>
               <td>'.$row["product_id"].'</td>
               <td>'.$row["product_name"].'</td>
               <td>'.$row["quantity"].'</td>
                <td>'.$row["unit"].'</td>
-               <td>'.$row["status"].'</td>
+               
                <td>
                <button type="button" class="btn btn-link"> <a href="edit.php?editid='.$product_id.'">  <span class="bi bi-pencil-fill"></span></a></button>
                <button type="button" class="btn btn-link"><a href="delete.php?deleteid='.$product_id.'"> <span class="bi bi-trash"></span></button>

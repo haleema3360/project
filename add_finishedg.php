@@ -249,11 +249,19 @@ input[type=submit]:hover {
     <br>
 
     <label>Division</label>
-    <input type="text"  name="division" placeholder="division">
+    <select name="division" id="">
+                        <option value="" disabled hidden selected>Division</option>
+                        <option value="cd">CD</option>
+                        <option value="pd">PD</option>
+</select>
     <br>
     <label>Type</label>
     <br>
-    <input type="text"  name="type" placeholder="type">
+    <select name="type" id="">
+                        <option value="" disabled hidden selected>Type</option>
+                        <option value="custom">Custom</option>
+                        <option value="standard">Standard</option>
+</select>
     <br>
     <label>Quantity</label>
     <br>

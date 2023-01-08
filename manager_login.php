@@ -5,7 +5,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     include 'partial/dbconnect.php';
     $username = $_POST["username"];
     $password = $_POST["password"]; 
-    $sql = "Select * from users where username='$username' AND password='$password'";
+    $sql = "Select * from manager where username='$username' AND password='$password'";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     if ($num == 1){
@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        header("location: admin_profile.php");
+        header("location: manager_profile.php");
 
     } 
     else{
@@ -33,6 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     
   </head>
   <body>
@@ -57,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     ?>
     
     <div class="container my-5">
-        <form action="/project/login.php" method="post">
+        <form action="/project/manager_login.php" method="post">
       <div class="login-page">
       <div class="form">
         <div class="login">
@@ -76,8 +77,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
      
     </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-
   </body>
 </html>
 

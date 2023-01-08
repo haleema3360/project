@@ -1,28 +1,14 @@
 <?php
 include 'partial/dbconnect.php';
-if(isset($_POST['submit'])){
-        $part_no= $_POST["part_no"];
-        $part_name=$_POST["part_name"];
-        $type=$_POST["type"];
-        $machine=$_POST["machine"];
-        $department=$_POST["department"];
-        $sql = "INSERT INTO mro (part_no, part_name, type , machine, department) 
-          VALUES ('$part_no', '$part_name', '$type','$machine', '$department')";
-          $result = mysqli_query($conn, $sql);
-          if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data inserted";
-            
-            
-            header("location: admin_mro.php");
-            exit;
-            
-          }
-          else{
-          die(mysqli_error($conn));
-            
-           }
+if(isset($_GET['editid'])){
+$product_id=$_GET['editid'];
+$sql="SELECT * FROM `finished_goods` WHERE product_id = '$product_id'";
+$result=$conn->query($sql);
+
+if($result->num_rows!=1){
+  die('id not found/invalid');
+}
+$data=$result->fetch_assoc();
 }
 ?>
 <!doctype html>
@@ -157,7 +143,7 @@ input[type=submit]:hover {
 
     
 
-    <title>Products</title>
+    <title>edit Item</title>
   </head>
   <body>
 
@@ -166,57 +152,52 @@ input[type=submit]:hover {
             <div class="profile">
             
             <h2></h2>
-            <p>Admin</p>
+            <p>Manager</p>
             </div>
             <ul>
                 <li>
-                    <a href="admin_profile.php">
+                    <a href="manager_profile.php">
                         <span class="item">Profile</span>
                     </a>
                 </li>
                     
                 <li>
-                    <a href="admin_products.php">
+                    <a href="manager_products.php">
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php">
+                    <a href="manager_porders.php">
                         
                         <span class="item">Product Orders</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_rawmaterials.php">
+                    <a href="manager_rawmaterials.php">
                         
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_wip.php">
+                    <a href="manager_wip.php">
                         
                         <span class="item">WIP Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php"  >
+                    <a href="manager_finishedg.php"  class="active">
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_mro.php" class="active">
+                    <a href="manager_mro.php">
                         
                         <span class="item">MRO Inventory</span>
                     </a>
                 </li>
-                <li>
-                    <a href="admin_empmanage.php">
-                        
-                        <span class="item">Employee Management</span>
-                    </a>
-                </li>
+                
                 <li>
                     
                         <a href="/project/logout.php"><span class="item">Signout</span></a>
@@ -232,33 +213,34 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading"> Add Item</h2>
+<h2 class="heading">Edit Item</h2>
 <div class="box">
 <div>
-  <form action="/project/add_mro.php" method="post">
-    <label>Part No</label>
-    <input type="text"  name="part_no" placeholder="part no">
+  <form action="manager_modify_fg.php?editid=<?= $product_id?>" method="post">
+  <label>Product ID</label>
+    <input type="text"  name="product_id" placeholder="Product ID" value="<?= $data['product_id']?>">
     <br>
 
-    <label>Part Name</label>
-    <input type="text"  name="part_name" placeholder="part name">
+    <label>Product</label>
+    <input type="text"  name="product" placeholder="product" value="<?= $data['product']?>">
     <br>
 
-    <label>Type</label><br>
-    <select name="type" id="">
-                        <option value="" disabled hidden selected>Type</option>
-                        <option value="spare">Spare</option>
-                        <option value="maintaenance">Maintenance</option>
-</select>
+    <label>Division</label>
+    <input type="text"  name="division" placeholder="division" value="<?= $data['division']?>">
     <br>
-    <label>Machine</label>
+    <label>Type</label>
     <br>
-    <input type="text"  name="machine" placeholder="machine">
+    <input type="text"  name="type" placeholder="type" value="<?= $data['type']?>">
     <br>
-    <label>Department</label>
+    <label>Quantity</label>
     <br>
-    <input type="text"  name="department" placeholder="department">
-    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    <input type="text"  name="quantity" placeholder="quantity" value="<?= $data['quantity']?>">
+    <br>
+    
+    <label>Client</label>
+    <br>
+    <input type="text"  name="client" placeholder="client" value="<?= $data['client']?>">
+    <button type="submit" class="btn btn-primary" name="update">Update</button>
   
   </form>
   </div>

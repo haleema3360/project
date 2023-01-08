@@ -1,31 +1,14 @@
 <?php
 include 'partial/dbconnect.php';
-$batch_id=$_GET['editid']; 
+if(isset($_GET['editid'])){
+$batch_id=$_GET['editid'];
+$sql="SELECT * FROM `wip` WHERE batch_id = '$batch_id'";
+$result=$conn->query($sql);
 
-if(isset($_POST['update'])){
-        $batch_id= $_POST["batch_id"];
-        $component=$_POST["component"];
-        $workstation_from=$_POST["workstation_from"];
-        $time_deposited=$_POST["time_deposited"];
-        $sender=$_POST["sender"];
-        $workstation_to=$_POST["workstation_to"];
-        $time_picked=$_POST["time_picked"];
-        $receiver=$_POST["receiver"];
-          
-
-        $sql = "UPDATE `wip` SET batch_id='$batch_id',component='$component',workstation_from='$workstation_from',time_deposited='$time_deposited',sender='$sender',
-        workstation_to='$workstation_to',time_picked='$time_picked',receiver='$receiver' WHERE batch_id='$batch_id'";
-          
-        $result = mysqli_query($conn, $sql);
-          if($result){         
-           header("location: admin_wip.php");
-            exit;
-            
-          }
-          else{
-          die(mysqli_error($conn));
-            
-           }
+if($result->num_rows!=1){
+  die('id not found/invalid');
+}
+$data=$result->fetch_assoc();
 }
 ?>
 
@@ -240,26 +223,26 @@ input[type=submit]:hover {
 <div class="box">
 
 <div>
-  <form action="/project/edit_wip.php" method="post">
+  <form action="modify_wip.php?editid=<?= $batch_id ?>" method="post">
     <label>Batch ID</label>
-    <input type="text"  name="batch_id" placeholder="Batch ID">
+    <input type="text"  name="batch_id" placeholder="Batch ID" value="<?= $data['batch_id']?>">
 
     <label>Component</label>
-    <input type="text"  name="component" placeholder="Component">
+    <input type="text"  name="component" placeholder="Component" value="<?= $data['component']?>">
 
     <label>Workstation From</label>
-    <input type="text"  name="workstation_from" placeholder="Workstation From">
+    <input type="text"  name="workstation_from" placeholder="Workstation From" value="<?= $data['workstation_from']?>">
     <label>Time(Deposited)</label>
-    <input type="time"  name="time_deposited" placeholder="Time(Deposited)"><br>
+    <input type="time"  name="time_deposited" placeholder="Time(Deposited)" value="<?= $data['time_deposited']?>"><br>
     <label>Sender</label>
-    <input type="text"  name="sender" placeholder="Sender Name">
+    <input type="text"  name="sender" placeholder="Sender Name" value="<?= $data['sender']?>">
 
     <label>Workstation To</label>
-    <input type="text"  name="workstation_to" placeholder="Workstation To">
+    <input type="text"  name="workstation_to" placeholder="Workstation To" value="<?= $data['workstation_to']?>">
     <label>Time(Picked Up)</label>
-    <input type="time"  name="time_picked" placeholder="Time(Picked Up)"><br>
+    <input type="time"  name="time_picked" placeholder="Time(Picked Up)" value="<?= $data['time_picked']?>"><br>
     <label>Receiver</label>
-    <input type="text"  name="receiver" placeholder="Receiver Name">
+    <input type="text"  name="receiver" placeholder="Receiver Name" value="<?= $data['receiver']?>">
 
     <button type="submit" class="btn btn-primary" name="update">Update</button>
     

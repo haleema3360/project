@@ -1,21 +1,24 @@
 <?php
 include 'partial/dbconnect.php';
-if(isset($_POST['submit'])){
-        $part_no= $_POST["part_no"];
-        $part_name=$_POST["part_name"];
-        $type=$_POST["type"];
-        $machine=$_POST["machine"];
-        $department=$_POST["department"];
-        $sql = "INSERT INTO mro (part_no, part_name, type , machine, department) 
-          VALUES ('$part_no', '$part_name', '$type','$machine', '$department')";
+
+$user_id=$_GET['editid'];
+if(isset($_POST['update'])){
+        $user_id=$_POST['user_id'];
+        $name= $_POST['name'];
+        $username=$_POST['username'];
+        
+        $dob=$_POST["dob"];
+        $gender=$_POST["gender"];
+        $phone=$_POST["phone"];
+        $address=$_POST["address"];
+
+        $sql = "UPDATE `profile` SET `user_id` = '$user_id',`name`='$name' `username` = '$username',`dob`='$dob',
+        `gender`='$gender',`phone`='$phone',`address`='$address' WHERE user_id='$user_id'";
+
           $result = mysqli_query($conn, $sql);
           if($result){
-            // header("location: admin_products.php");
-            // 
-            echo"Data inserted";
             
-            
-            header("location: admin_mro.php");
+            header("location: manager_profile.php");
             exit;
             
           }
@@ -25,6 +28,12 @@ if(isset($_POST['submit'])){
            }
 }
 ?>
+
+
+
+          
+
+          
 <!doctype html>
 <html lang="en">
   <head>
@@ -37,12 +46,12 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">    
    <style>.content {
-  border: 1px;
-  
-  margin-top: 30px;
-  margin-bottom: 60px;
-  margin-right: 0px;
-  margin-left: 240px;
+	border: 1px;
+	
+	margin-top: 30px;
+	margin-bottom: 60px;
+	margin-right: 0px;
+	margin-left: 240px;
     word-wrap: break-word;
     background-color:white;
 }
@@ -56,12 +65,12 @@ if(isset($_POST['submit'])){
 }
 
  .content .box {
-    padding: 5px;
-    width: 85%;
-    
-    
+	  padding: 5px;
+	  width: 85%;
+	  
+	  
 
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       display: block;
        margin-left: auto;
         margin-right: auto;
@@ -105,9 +114,9 @@ input[type=text], select {
   width: 95%;
   padding: 5px 10px;
   margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 0px;
-  margin-left: 10px;
+	margin-bottom: 10px;
+	margin-right: 0px;
+	margin-left: 10px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -157,7 +166,7 @@ input[type=submit]:hover {
 
     
 
-    <title>Products</title>
+    <title>Edit Info</title>
   </head>
   <body>
 
@@ -166,57 +175,52 @@ input[type=submit]:hover {
             <div class="profile">
             
             <h2></h2>
-            <p>Admin</p>
+            <p>Manager</p>
             </div>
             <ul>
                 <li>
-                    <a href="admin_profile.php">
+                    <a href="manager_profile.php"  class="active">
                         <span class="item">Profile</span>
                     </a>
                 </li>
                     
                 <li>
-                    <a href="admin_products.php">
+                    <a href="manager_products.php">
                         
                         <span class="item">Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_porders.php">
+                    <a href="manager_porders.php">
                         
                         <span class="item">Product Orders</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_rawmaterials.php">
+                    <a href="manager_rawmaterials.php">
                         
                         <span class="item">Raw Materials Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_wip.php">
+                    <a href="manager_wip.php">
                         
                         <span class="item">WIP Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_finishedg.php"  >
+                    <a href="manager_finishedg.php">
                         
                         <span class="item">Finished Goods Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin_mro.php" class="active">
+                    <a href="manager_mro.php">
                         
                         <span class="item">MRO Inventory</span>
                     </a>
                 </li>
-                <li>
-                    <a href="admin_empmanage.php">
-                        
-                        <span class="item">Employee Management</span>
-                    </a>
-                </li>
+                
                 <li>
                     
                         <a href="/project/logout.php"><span class="item">Signout</span></a>
@@ -232,34 +236,45 @@ input[type=submit]:hover {
 
         
 <div class="content"> 
-<h2 class="heading"> Add Item</h2>
+<h2 class="heading">Edit Profile</h2>
 <div class="box">
 <div>
-  <form action="/project/add_mro.php" method="post">
-    <label>Part No</label>
-    <input type="text"  name="part_no" placeholder="part no">
+  <form action="/project/edit_manager_info.php" method="post">
+
+  <label>Name</label>
+    <input type="text"  name="name" placeholder="name">
+    <br>
+    <label>User ID</label>
+    <input type="text"  name="user_id" placeholder="User ID">
+    <br>
+    <label>UserName</label>
+    <input type="text"  name="user_name" placeholder="User name">
+    <br>
+    
+    
+    
+
+    <label>Date of Birth</label>
+    <input type="date"  name="dob" placeholder="Date of Birth">
     <br>
 
-    <label>Part Name</label>
-    <input type="text"  name="part_name" placeholder="part name">
+    <label>Gender</label>
+    <input type="text"  name="gender" placeholder="gender">
     <br>
-
-    <label>Type</label><br>
-    <select name="type" id="">
-                        <option value="" disabled hidden selected>Type</option>
-                        <option value="spare">Spare</option>
-                        <option value="maintaenance">Maintenance</option>
-</select>
+    <label>Phone Number</label>
     <br>
-    <label>Machine</label>
+    <input type="text"  name="phone" placeholder="Phone number">
     <br>
-    <input type="text"  name="machine" placeholder="machine">
+    <label>Address</label>
     <br>
-    <label>Department</label>
-    <br>
-    <input type="text"  name="department" placeholder="department">
-    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    <input type="text"  name="address" placeholder="Address">
+    <button type="submit" class="btn btn-primary" name="update">Update</button>
+    
+    
+    
+    
   
+    
   </form>
   </div>
 </div>

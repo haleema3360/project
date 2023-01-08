@@ -5,11 +5,10 @@ if(isset($_POST['submit'])){
         $product_name=$_POST["product_name"];
         $quantity=$_POST["quantity"];
         $unit=$_POST["unit"];
-        $status=$_POST["status"];
           
 
-          $sql = "INSERT INTO products (product_id, product_name, quantity, unit, status) 
-          VALUES ('$product_id', '$product_name', '$quantity', '$unit', '$status')";
+          $sql = "INSERT INTO products (product_id, product_name, quantity, unit) 
+          VALUES ('$product_id', '$product_name', '$quantity', '$unit')";
           $result = mysqli_query($conn, $sql);
           if($result){
             // header("location: admin_products.php");
@@ -253,20 +252,17 @@ input[type=submit]:hover {
     <br>
     <label>Unit</label>
     <br>
-    <input type="text"  name="unit" placeholder="Unit">
+    <!-- <input type="text"  name="unit" placeholder="Unit"> -->
+    <select name="unit" id="">
+                        <option value="" disabled hidden selected>Unit</option>
+                        <option value="m²">m²</option>
+                        <option value="pcs">pcs</option>
+                        <option value="kg">Kg</option>
+                        <option value="m">m</option>
+                        <option value="l">l</option>
+                        </select>
     <br>
-    <label>Status</label>
     <br>
-    <!-- <input type="text"  name="status" placeholder="Status"> -->
-
-    <select name="status" id="">
-                        <option value="" disabled hidden selected>Status</option>
-                        <option value="procurement">Procurement</option>
-                        <option value="manufacturing">Manufacturing</option>
-                        <option value="warehousing">Warehousing</option>
-                        <option value="order fulfillment">Order fulfillment</option>
-                        <option value="transportation">Transportation</option>
-                    </select>
     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     
     
