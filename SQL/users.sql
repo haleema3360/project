@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2022 at 05:02 AM
+-- Generation Time: Jan 08, 2023 at 07:43 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -41,8 +41,33 @@ CREATE TABLE `finished_goods` (
 --
 
 INSERT INTO `finished_goods` (`product_id`, `product`, `division`, `type`, `quantity`, `client`) VALUES
-('NW-FP-0001', 'E22Fd', 'PD', 'standard', 700, 'AAL'),
-('NW-FP-0002', 'E15Fx', 'CD', 'Custom', 1300, 'IFT');
+('NW-FG-0001', 'CFSheet 500x500x9', 'CD', 'Standard', 30, ' IFT'),
+('NW-FP-0001', 'E22Fd', 'PD', 'Custom ', 20000, 'HI'),
+('NW-FP-0002', 'E15Fx', 'CD', 'Custom', 1300, 'IFT'),
+('NW-FP-005 ', 'NWIFMW', 'CD', 'Custom ', 450, ' IFT'),
+('NW-FP-006 ', ' ASLG', 'CD', 'Custom', 500, '  AAL'),
+('NW-FP-007', 'AX Motor 2Kw', ' PD', 'Standard', 240, 'RTL'),
+('NW-FP-010 ', 'CFSheet 500x500x1', ' PD', 'Custom ', 500, ' IFT');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manager`
+--
+
+CREATE TABLE `manager` (
+  `sno` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `manager`
+--
+
+INSERT INTO `manager` (`sno`, `username`, `password`, `date`) VALUES
+(1, 'mgr001', '123', '2023-01-08 12:04:01');
 
 -- --------------------------------------------------------
 
@@ -63,8 +88,12 @@ CREATE TABLE `mro` (
 --
 
 INSERT INTO `mro` (`part_no`, `part_name`, `type`, `machine`, `department`) VALUES
-('NW-MA-001', 'Push-to-connect', 'Spare', 'Vacuum', 'Production'),
-('NW-MA-002', 'Leading Screw brush', 'Spare', 'Hydraulic Press', 'Production');
+('NW-MA-001', 'Push-to-connect', 'Spare', 'Vacuum', 'Testing'),
+('NW-MA-0010', 'Leading Screw brush', 'Direct', 'machine', ' Motor Testing  Lab'),
+('NW-MA-002', 'Leading Screw brush', 'Spare', 'Hydraulic Press', 'Production'),
+('NW-MA-003 ', 'SHL216PV ', 'Oil Maintenance', 'Compressor', 'Production'),
+('NW-MA-004 ', ' Fuse', 'Spare', ' Dynamometer', ' Motor Testing  Lab'),
+('NW-MA-005 ', 'Cartriges', 'Spare', ' SPM ', 'Composite Lab');
 
 -- --------------------------------------------------------
 
@@ -85,7 +114,13 @@ CREATE TABLE `porders` (
 --
 
 INSERT INTO `porders` (`product_id`, `product_name`, `quantity`, `unit`, `status`) VALUES
-('NW-PR-0001', 'Sealing Cords', 30, 'm', 'order fulfillment');
+('NW-PO-0005', 'AX motor 2Kw', 20, 'pcs', 'manufacturing'),
+('NW-PO-0006', 'E22F', 40, 'pcs', 'procurement'),
+('NW-PR-0001', 'Sealing Cords', 30, 'm', 'order fulfillment'),
+('NW-PR-0002', 'ASLG', 200, 'pcs', 'order fulfillment'),
+('NW-PR-0003', 'ASLK', 10, 'pcs', 'ordered'),
+('NW-PR-0004', 'CFSheet 500x500x1', 500, 'pcs', 'transportation'),
+('NW-PR-0007', 'E18Fx', 534, 'pcs', 'warehousing');
 
 -- --------------------------------------------------------
 
@@ -97,17 +132,21 @@ CREATE TABLE `products` (
   `product_id` varchar(10) NOT NULL,
   `product_name` varchar(50) NOT NULL,
   `quantity` int(10) NOT NULL,
-  `unit` varchar(10) NOT NULL,
-  `status` varchar(50) NOT NULL
+  `unit` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `quantity`, `unit`, `status`) VALUES
-('NW-PR-0002', 'PU Tube 4mm', 100, 'm', 'manufacturing'),
-('NW-PR-001', 'Sealing Cords', 30, 'm', 'ordered');
+INSERT INTO `products` (`product_id`, `product_name`, `quantity`, `unit`) VALUES
+('NW-PR-0002', 'PU Tube 4mm', 100, 'm'),
+('NW-PR-0003', 'ASLK', 65, 'pcs'),
+('NW-PR-0004', 'E18FX', 40, 'pcs'),
+('NW-PR-0005', 'AX motor 2Kw', 200, 'pcs'),
+('NW-PR-0007', 'E22Fd', 200, 'pcs'),
+('NW-PR-0008', 'NWIFMW', 450, 'pcs'),
+('NW-PR-001', 'Sealing Cords', 30, 'm');
 
 -- --------------------------------------------------------
 
@@ -177,8 +216,13 @@ CREATE TABLE `raw_materials` (
 --
 
 INSERT INTO `raw_materials` (`sku_id`, `material`, `type`, `quantity`, `units`, `received_date`) VALUES
-('NW-RM-0001', 'CF3KTW', 'Direct', 75, 'm', '2022-12-07'),
-('NW-RM-0002', '2W Tube', 'Indirect', 100, 'pcs', '2022-12-15');
+('NW-RM-0001', 'CF3KTW', 'Indirect', 75, 'm', '2022-12-07'),
+('NW-RM-0002', '2W Tube', 'Indirect', 100, 'pcs', '2022-12-15'),
+('NW-RM-0006', 'HM ResMat', ' Direct', 60, 'l', '2022-12-07'),
+('NW-RM-0007', ' CF3KTW', 'Direct', 75, 'm', '2023-01-01'),
+('NW-RM-0009', 'Db Foam 6mm', 'Direct', 60, 'mm', '2022-06-14'),
+('NW-RM-0010', 'Sealing Cords ', 'Indirect', 30, 'm', '2022-10-05'),
+('NW-RM-077', ' CF3KTWWW', 'Direct', 75, 'mm', '2023-01-31');
 
 -- --------------------------------------------------------
 
@@ -202,7 +246,12 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `user_name`, `dob`, `gender`, `designation`, `phone`, `address`) VALUES
 ('NW-AD-0001', 'admin', '2000-06-18', 'M', 'admin', 987654321, 'RT nagar, Bangalore'),
-('NW-MG-0006', 'mgr21', '1991-12-11', 'M', 'Manager', 2147483647, 'Yelahanka, Bangalore');
+('NW-MG-0006', 'mgr06', '1985-06-14', 'M', 'Manager', 2147483647, 'Yelahanka'),
+('NW-WK-0001', 'wk001', '1998-02-13', 'F', 'Worker', 876579076, 'Jp Nagar 6th phase'),
+('NW-MG-0001', 'mgr001', '1976-08-19', 'M', 'Manager', 2147483647, 'Jayanagar 3rd block'),
+('NW-MG-0002', 'mgr002', '1988-11-16', 'F', 'Manager', 2147483647, 'Kengeri'),
+('NW-WK-0005', 'wk005', '1990-09-06', 'M', 'Worker', 2147483647, 'East End'),
+('NW-WK-0007', 'wk007', '1994-08-30', 'F', 'Worker', 2147483647, 'RBI Layout');
 
 -- --------------------------------------------------------
 
@@ -222,7 +271,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`sno`, `username`, `password`, `date`) VALUES
-(26, 'admin', '123', '2022-11-15 08:03:36');
+(34, 'sadiya', '123', '2023-01-02 21:54:11'),
+(35, 'mgr001', '123', '2023-01-04 10:19:35'),
+(36, 'admin', '123', '2023-01-06 21:00:08');
 
 -- --------------------------------------------------------
 
@@ -246,8 +297,10 @@ CREATE TABLE `wip` (
 --
 
 INSERT INTO `wip` (`batch_id`, `component`, `workstation_from`, `time_deposited`, `sender`, `workstation_to`, `time_picked`, `receiver`) VALUES
-('PD-0001', 'CF Temp', 1, ' 10:15', 'name', 6, '13:25', 'name'),
-('PD-0002', 'PF', 2, ' 14:22', 'name', 5, '04:30', 'name');
+('PD-0001', 'CF Temp', 1111, '01:26', 'name', 6, '13:25', 'name'),
+('PD-0002', 'PF', 2, ' 14:22', 'name', 5, '04:30', 'name'),
+('PD-0003', 'Cut PUF', 2, ' 08:24', 'name', 3, '09:40', 'name'),
+('PD-00088', 'Sket Balsa hn', 6, ' 19:32', 'name', 3, '19:28', 'name');
 
 --
 -- Indexes for dumped tables
@@ -258,6 +311,12 @@ INSERT INTO `wip` (`batch_id`, `component`, `workstation_from`, `time_deposited`
 --
 ALTER TABLE `finished_goods`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `manager`
+--
+ALTER TABLE `manager`
+  ADD PRIMARY KEY (`sno`);
 
 --
 -- Indexes for table `mro`
@@ -312,10 +371,16 @@ ALTER TABLE `wip`
 --
 
 --
+-- AUTO_INCREMENT for table `manager`
+--
+ALTER TABLE `manager`
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
